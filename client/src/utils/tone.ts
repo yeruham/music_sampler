@@ -6,7 +6,7 @@ function playMusicNote(note: string): void{
     console.log("start 1")
     Tone.loaded().then(() => {
         console.log("start 2")
-        player.start(Tone.now()).stop(Tone.now() + 2);
+        player.start().stop(Tone.now() + 2);
     })
 }
 

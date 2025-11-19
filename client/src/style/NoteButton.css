@@ -1,7 +1,15 @@
 .note-button {
-  border: solid 1px red;
-  color: white;
+  background-color: rgb(163, 203, 252);
+  border: 1px solid black;
+  border-radius: 3px;
+  color: black;
   text-align: center;
   padding: 20px;
   font-size: 20px;
 }
+
+.active{
+  background-color: rgb(255, 87, 87);
+}
+
+

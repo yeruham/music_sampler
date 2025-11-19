@@ -5,14 +5,14 @@ import playMusicNote from "../utils/tone";
 function NoteButton({ note }: { note: string }) {
   const [isActive, setIsActive] = useState(false);
   const handleClick = () => {
-    playMusicNote(note);
+    if (!isActive){
+      playMusicNote(note);
+    }
     setIsActive(!isActive);
   };
-  const style = {
-    backgroundColor: isActive ? "red" : "#4caf50"
-  }
+  const className = isActive? "note-button active": "note-button";
   return (
-    <button style={style} className="note-button" onClick={handleClick}>
+    <button className={className} onClick={handleClick}>
       {note}
     </button>
   );

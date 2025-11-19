@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "../style/NotesGrid.css";
 import NotesColumn from "./NotesColumn";
-import AddNoteCulumn from "./AddNotesCulumnButton";
 
 function NotesGrid({ musicalNotes, gridColumns }: { musicalNotes: string[], gridColumns: number }) {
 
@@ -16,7 +15,9 @@ function NotesGrid({ musicalNotes, gridColumns }: { musicalNotes: string[], grid
     );
   });
 
-  return <div className="notes-grid">
+  const gridTemplateRowsStyle = {  gridTemplateRows: `repeat(${musicalNotes.length}, auto)`}
+
+  return <div className="notes-grid" style={gridTemplateRowsStyle}>
     {notesColumns}
   </div>;
 }

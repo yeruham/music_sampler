@@ -6,7 +6,7 @@ interface AddNoteCulumnProps{
   numColumnsToAdd?: number
 }
 
-function AddNotesCulumnButton( {gridColumns, setGridColumns, numColumnsToAdd } : AddNoteCulumnProps ){
+function AddNotesColumnButton( {gridColumns, setGridColumns, numColumnsToAdd } : AddNoteCulumnProps ){
     if (!numColumnsToAdd){
         numColumnsToAdd = 1;
     }
@@ -16,4 +16,4 @@ function AddNotesCulumnButton( {gridColumns, setGridColumns, numColumnsToAdd } :
     return (<button onClick={handleClick}>add new column</button>)
 }
 
-export default AddNotesCulumnButton;
+export default AddNotesColumnButton;
