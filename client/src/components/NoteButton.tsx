@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./NoteButton.css";
+import "../style/NoteButton.css";
 import playMusicNote from "../utils/tone";
 
 function NoteButton({ note }: { note: string }) {

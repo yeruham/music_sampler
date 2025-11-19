@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./NotesGrid.css";
+import "../style/NotesGrid.css";
 import NotesColumn from "./NotesColumn";
 import AddNoteCulumn from "./AddNoteCulumn";
 
