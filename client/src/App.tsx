@@ -2,7 +2,8 @@
 import { useState } from 'react';
 import './App.css'
 import NotesGrid from './components/NotesGrid'
-import AddNoteCulumn from './components/AddNoteCulumn';
+import AddNotesCulumnButton from './components/AddNotesCulumnButton';
+
 
 function App() {
 
@@ -12,7 +13,7 @@ function App() {
 
   return (<>
     <NotesGrid musicalNotes={musicalNotes} gridColumns={gridColumns}/>
-    <AddNoteCulumn handleClick={() => setGridColumns(gridColumns + 1)}></AddNoteCulumn>
+    <AddNotesCulumnButton gridColumns={gridColumns} setGridColumns={setGridColumns}></AddNotesCulumnButton>
   </> )
 }
 

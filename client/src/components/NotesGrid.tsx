@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../style/NotesGrid.css";
 import NotesColumn from "./NotesColumn";
-import AddNoteCulumn from "./AddNoteCulumn";
+import AddNoteCulumn from "./AddNotesCulumnButton";
 
 function NotesGrid({ musicalNotes, gridColumns }: { musicalNotes: string[], gridColumns: number }) {
 
