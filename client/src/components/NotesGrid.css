@@ -1,0 +1,8 @@
+.notes-grid {
+  display: grid;
+  grid-auto-columns: 100px; 
+  grid-template-rows: repeat(5, auto);
+  grid-auto-flow: column;
+  column-gap: 5px;
+  row-gap: 1px;
+}
