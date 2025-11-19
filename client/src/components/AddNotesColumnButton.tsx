@@ -1,12 +1,7 @@
 import NotesColumn from "./NotesColumn";
+import { type ChangeNumCulumnProps } from "../interfaces/ChangeNumCulumnProps";
 
-interface AddNoteCulumnProps{
-  gridColumns: number,
-  setGridColumns: React.Dispatch<React.SetStateAction<number>>,
-  numColumnsToAdd?: number
-}
-
-function AddNotesColumnButton( {gridColumns, setGridColumns, numColumnsToAdd } : AddNoteCulumnProps ){
+function AddNotesColumnButton( {gridColumns, setGridColumns, numColumnsToAdd } : ChangeNumCulumnProps ){
     if (!numColumnsToAdd){
         numColumnsToAdd = 1;
     }

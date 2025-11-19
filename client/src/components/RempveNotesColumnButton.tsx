@@ -1,12 +1,7 @@
 import NotesColumn from "./NotesColumn";
+import { type ChangeNumCulumnProps } from "../interfaces/ChangeNumCulumnProps";
 
-interface RemoveNoteCulumnProps{
-  gridColumns: number,
-  setGridColumns: React.Dispatch<React.SetStateAction<number>>,
-  numColumnsToRemove?: number
-}
-
-function RempveNotesCulumnButton( {gridColumns, setGridColumns, numColumnsToRemove } : RemoveNoteCulumnProps ){
+function RempveNotesCulumnButton( {gridColumns, setGridColumns, numColumnsToRemove } : ChangeNumCulumnProps ){
     if (!numColumnsToRemove){
         numColumnsToRemove = 1;
     }
