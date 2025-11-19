@@ -8,7 +8,7 @@ function AddNotesColumnButton( {gridColumns, setGridColumns, numColumnsToAdd } :
     const handleClick = () => {
         setGridColumns(gridColumns =>  gridColumns + numColumnsToAdd)
     }
-    return (<button onClick={handleClick}>add new column</button>)
+    return (<button onClick={handleClick} className="change-num-columns-button">add new column</button>)
 }
 
 export default AddNotesColumnButton;

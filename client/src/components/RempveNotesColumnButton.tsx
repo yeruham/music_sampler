@@ -8,7 +8,7 @@ function RempveNotesCulumnButton( {gridColumns, setGridColumns, numColumnsToRemo
     const handleClick = () => {
         setGridColumns(gridColumns =>  gridColumns - numColumnsToRemove)
     }
-    return (<button onClick={handleClick}>remove last column</button>)
+    return (<button onClick={handleClick} className="change-num-columns-button">remove last column</button>)
 }
 
 export default RempveNotesCulumnButton;

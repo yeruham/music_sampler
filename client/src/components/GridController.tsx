@@ -1,18 +1,21 @@
 import { useState } from 'react';
+import '../style/gridContoller.css'
 import NotesGrid from './NotesGrid'
 import AddNotesColumnButton from './AddNotesColumnButton';
 import RempveNotesCulumnButton from './RempveNotesColumnButton';
 
 
 function GridController({ musicalNotes, defultCulomns, maxColumns } : { musicalNotes: string[], defultCulomns?: number, maxColumns?: number }){
-    const [gridColumns, setGridColumns] = useState(defultCulomns || 3);
+    const [gridColumns, setGridColumns] = useState(defultCulomns || 8);
     const maxGridColumns = maxColumns || 12;
 
-    return(<>
+    return(<div className='grid-controller'>
+        <div className='controll-buttons'>
+            {gridColumns < maxGridColumns && <AddNotesColumnButton gridColumns={gridColumns} setGridColumns={setGridColumns}></AddNotesColumnButton>}
+            {gridColumns > 0 && <RempveNotesCulumnButton  gridColumns={gridColumns} setGridColumns={setGridColumns}></RempveNotesCulumnButton>}
+        </div>
         <NotesGrid musicalNotes={musicalNotes} gridColumns={gridColumns}/>
-        {gridColumns < maxGridColumns && <AddNotesColumnButton gridColumns={gridColumns} setGridColumns={setGridColumns}></AddNotesColumnButton>}
-        <RempveNotesCulumnButton  gridColumns={gridColumns} setGridColumns={setGridColumns}></RempveNotesCulumnButton>
-    </>)
+    </div>)
 }
 
 export default GridController;
