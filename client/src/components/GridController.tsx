@@ -4,9 +4,9 @@ import AddNotesColumnButton from './AddNotesColumnButton';
 import RempveNotesCulumnButton from './RempveNotesColumnButton';
 
 
-function GridController({ musicalNotes } : { musicalNotes: string[] }){
-    const [gridColumns, setGridColumns] = useState(3);
-    const maxGridColumns = 12;
+function GridController({ musicalNotes, defultCulomns, maxColumns } : { musicalNotes: string[], defultCulomns?: number, maxColumns?: number }){
+    const [gridColumns, setGridColumns] = useState(defultCulomns || 3);
+    const maxGridColumns = maxColumns || 12;
 
     return(<>
         <NotesGrid musicalNotes={musicalNotes} gridColumns={gridColumns}/>
