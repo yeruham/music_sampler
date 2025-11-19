@@ -5,9 +5,8 @@ import AddNoteCulumn from "./AddNoteCulumn";
 
 function NotesGrid({ musicalNotes, gridColumns }: { musicalNotes: string[], gridColumns: number }) {
 
-  const [numColumns, setNumColumns] = useState(gridColumns);
 
-  const notesColumns = Array.from({ length: numColumns }, (_, i) => {
+  const notesColumns = Array.from({ length: gridColumns }, (_, i) => {
     return (
       <NotesColumn
         musicalNotes={musicalNotes}
@@ -19,7 +18,6 @@ function NotesGrid({ musicalNotes, gridColumns }: { musicalNotes: string[], grid
 
   return <div className="notes-grid">
     {notesColumns}
-    <AddNoteCulumn handleClick={() => setNumColumns(numColumns + 1)}></AddNoteCulumn>
   </div>;
 }
 
