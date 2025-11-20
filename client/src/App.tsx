@@ -1,16 +1,15 @@
 import './App.css'
-import GridController from './components/GridController';
+import './components/PlayController'
+import PlayController from './components/PlayController';
 
 
 function App() {
 
-
-  const musicalNotes = ["A3vH.wav", "B3vH.wav", "C3vH.wav", "D3vH.wav", "F3vH.wav"];
-
+  const urls = {A3: "A3vH.wav", B3: "B3vH.wav", C3: "C3vH.wav", D3: "D3vH.wav", F3: "F3vH.wav"}
 
   return (<>
     <h1>music sampler</h1>
-    <GridController musicalNotes={musicalNotes}></GridController>
+    <PlayController urls={urls}></PlayController>
   </> )
 }
 
