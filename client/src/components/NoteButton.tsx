@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import "../style/NoteButton.css";
-import playMusicNote from "../utils/tone";
+import * as Tone from "tone"
+import { PlayContext, type NotePlayer } from './PlayController'
+
 
 function NoteButton({ note }: { note: string }) {
   const [isActive, setIsActive] = useState(false);
+  const notePlayer = useContext(PlayContext) as NotePlayer;
+
   const handleClick = () => {
     if (!isActive){
-      playMusicNote(note);
+      notePlayer.play(note);
     }
     setIsActive(!isActive);
   };
