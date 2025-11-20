@@ -4,7 +4,7 @@ function NotesColumn({ musicalNotes, columnId }: { musicalNotes: string[], colum
   return (
     <>
       {musicalNotes.map((note) => {
-        return <NoteButton note={note} key={note + columnId} />;
+        return <NoteButton note={note} columnId={columnId} key={note + columnId} />;
       })}
     </>
   );
