@@ -15,11 +15,10 @@ function PlayController({ urls }: { urls: {[key: string] : string} }){
     const players = new Tone.Players(urls).toDestination();
     const musicalNotes = Object.keys(urls);
     const melodyNotes = useRef<string[][]>([])
-    console.log(`play controller`, melodyNotes)
 
     const playNote = (note: string) => {
         try{
-            players.player(note).start().stop("+2");
+            players.player(note).start().stop("+1");
         }
         catch (err){
             console.log(`Error Tone.Players cannot accept ${note}. ${err}`)
@@ -31,7 +30,7 @@ function PlayController({ urls }: { urls: {[key: string] : string} }){
     return(
     <PlayContext.Provider value={notePlayer}>
         <GridController musicalNotes={musicalNotes}></GridController>
-        <PlayGridButton></PlayGridButton>
+        <PlayGridButton players={players}></PlayGridButton>
     </PlayContext.Provider>
     )
 }
