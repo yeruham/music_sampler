@@ -1,17 +1,17 @@
 import { useContext, useEffect } from "react";
 import "../style/NotesGrid.css";
 import NotesColumn from "./NotesColumn";
-import { PlayContext, type NotePlayer } from './PlayController'
+import { PlayContext, type Player } from './PlayController'
 
 
 function NotesGrid({ musicalNotes, gridColumns }: { musicalNotes: string[], gridColumns: number }) {
-  const notePlayer = useContext(PlayContext) as NotePlayer;
+  const player = useContext(PlayContext) as Player;
   
   useEffect(() => {
-    const melodyNotes = notePlayer.melodyNotes
-    const lenMelodyNotes = notePlayer.melodyNotes.length;
+    const melodyNotes = player.melodyNotes
+    const lenMelodyNotes = player.melodyNotes.length;
     if (lenMelodyNotes > gridColumns){
-      notePlayer.melodyNotes.splice(gridColumns);
+      player.melodyNotes.splice(gridColumns);
     }else{
     for (let i = lenMelodyNotes; i < gridColumns; i++){
       melodyNotes.push([]);

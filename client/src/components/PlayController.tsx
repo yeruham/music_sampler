@@ -1,20 +1,21 @@
 import { createContext, useRef, useState } from "react";
 import * as Tone from "tone"
 import GridController from './GridController';
-import PlayGridButton from "./PlayGridButton";
+import MelodyDashboard from "./MelodyDashboard";
 
-export interface NotePlayer{
-    play: (note: string) => void
+export interface Player{
+    playNpte: (note: string) => void
     melodyNotes: string[][]
 }
 
-export const PlayContext = createContext();
+export const PlayContext = createContext<Player | null>(null);
 
 function PlayController({ urls }: { urls: {[key: string] : string} }){
 
     const players = new Tone.Players(urls).toDestination();
     const musicalNotes = Object.keys(urls);
-    const melodyNotes = useRef<string[][]>([])
+    const melodyNotes = useRef<string[][]>([]);
+    const currentPlay = useRef(-1);
 
     const playNote = (note: string) => {
         try{
@@ -25,12 +26,12 @@ function PlayController({ urls }: { urls: {[key: string] : string} }){
         }
     }
 
-    const notePlayer: NotePlayer = {play: playNote, melodyNotes: melodyNotes.current}
+    const player: Player = {playNpte: playNote, melodyNotes: melodyNotes.current}
     
     return(
-    <PlayContext.Provider value={notePlayer}>
+    <PlayContext.Provider value={player}>
         <GridController musicalNotes={musicalNotes}></GridController>
-        <PlayGridButton players={players}></PlayGridButton>
+        <MelodyDashboard></MelodyDashboard>
     </PlayContext.Provider>
     )
 }

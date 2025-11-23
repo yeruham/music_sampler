@@ -1,16 +1,16 @@
 import { useState, useContext } from "react";
 import "../style/NoteButton.css";
-import { PlayContext, type NotePlayer } from './PlayController'
+import { PlayContext, type Player } from './PlayController'
 
 
 function NoteButton({ note, columnId }: { note: string, columnId: number }) {
   const [isActive, setIsActive] = useState(false);
-  const notePlayer = useContext(PlayContext) as NotePlayer;
+  const player = useContext(PlayContext) as Player;
 
   const handleClick = () => {
-    const melodyNotes = notePlayer.melodyNotes
+    const melodyNotes = player.melodyNotes
     if (!isActive){
-      notePlayer.play(note);
+      player.playNpte(note);
       melodyNotes[columnId].push(note);
     }
     else{
