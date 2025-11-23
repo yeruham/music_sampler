@@ -1,5 +1,6 @@
 export  default interface MelodyControl{
-    setIsActivePlayer: React.Dispatch<React.SetStateAction<boolean>>,
+    isActivePlayer: React.RefObject<boolean>,
+    isPausedPlayer: React.RefObject<boolean>,
     setCurrentPlayColumn: React.Dispatch<React.SetStateAction<number>>,
     loopPlay: React.RefObject<boolean>,
 }

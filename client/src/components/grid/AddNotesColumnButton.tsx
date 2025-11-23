@@ -1,5 +1,4 @@
-import NotesColumn from "./NotesColumn";
-import { type ChangeNumCulumnProps } from "../interfaces/ChangeNumCulumnProps";
+import { type ChangeNumCulumnProps } from "../../interfaces/ChangeNumCulumnProps";
 
 function AddNotesColumnButton( {gridColumns, setGridColumns, numColumnsToAdd } : ChangeNumCulumnProps ){
     if (!numColumnsToAdd){

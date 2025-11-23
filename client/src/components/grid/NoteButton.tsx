@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
-import "../style/NoteButton.css";
-import { PlayContext, type Player } from './PlayController'
+import "./style/NoteButton.css";
+import { PlayContext, type Player } from '../PlayController'
 
 
 function NoteButton({ note, columnId }: { note: string, columnId: number }) {
