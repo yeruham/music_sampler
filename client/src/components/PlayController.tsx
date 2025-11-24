@@ -12,11 +12,10 @@ export interface Player {
 export const PlayContext = createContext<Player | null>(null);
 
 function PlayController({ urls }: { urls: { [key: string]: string } }) {
-  const players = new Tone.Players(urls).toDestination();
+  const players = useRef(new Tone.Players(urls).toDestination()).current;
   const musicalNotes = Object.keys(urls);
   const melodyNotes = useRef<string[][]>([]);
-  // const currentPlay = useRef(-1);
-  const [currentPlayColumn, setCurrentPlayColumn] = useState(0);
+  const [currentPlayColumn, setCurrentPlayColumn] = useState(-1);
 
   const playNote = (note: string) => {
     try {
