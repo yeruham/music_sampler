@@ -1,3 +1,4 @@
+import * as Tone from "tone";
 import type MelodyControl from "../interfaces/MelodyControl";
 import { type Player } from "../components/PlayController";
 
@@ -7,7 +8,7 @@ export interface PlayGridProps {
 }
 
 export async function playGrid({ player, melodyControl }: PlayGridProps) {
-  const melodyNotes = player.melodyNotes;
+  const { melodyNotes, players} = player;
   const {
     isActivePlayer,
     isPausedPlayer,
@@ -23,41 +24,47 @@ export async function playGrid({ player, melodyControl }: PlayGridProps) {
       if (loopPlay.current) {
         setCurrentPlayColumn(0);
       } else {
-        endPlay(isActivePlayer, setCurrentPlayColumn);
+        endPlay(players, isActivePlayer, setCurrentPlayColumn);
       }
     }
   }
 }
 
 async function playMelody({ player, melodyControl }: PlayGridProps) {
-  const { melodyNotes, playNote } = player;
+  const { melodyNotes, players } = player;
   const {
     isActivePlayer,
     isPausedPlayer,
     currentPlayColumn,
     setCurrentPlayColumn,
+    speed,
   } = melodyControl;
 
-  const msBetweenColumns = 500;
+  const msBetweenColumns = speed.current * 100;
   const column = melodyNotes[currentPlayColumn];
+  players.stopAll();
   column.forEach((note) => {
-    playNote(note);
+    try {
+      players.player(note).start();
+    } catch (err) {
+      console.log(`Error Tone.Players cannot accept ${note}. ${err}`);
+    }
   });
   await deley(msBetweenColumns);
   if (isActivePlayer.current && !isPausedPlayer.current) {
-    setCurrentPlayColumn(melodyControl.currentPlayColumn + 1);
+    setCurrentPlayColumn(currentPlayColumn + 1);
   }
 }
 
-
 function endPlay(
+  players: Tone.Players,
   isActivePlayer: React.RefObject<boolean>,
   setCurrentPlayColumn: (num: number) => void
 ) {
   isActivePlayer.current = false;
   setCurrentPlayColumn(-1);
+  players.stopAll();
 }
-
 
 const deley = (ms: number) => {
   return new Promise((resulve) => setTimeout(resulve, ms));

@@ -4,7 +4,7 @@ import GridController from "./grid/GridController";
 import MelodyDashboard from "./play/MelodyDashboard";
 
 export interface Player {
-  playNote: (note: string) => void;
+  players: Tone.Players;
   melodyNotes: string[][];
   currentPlayCulomn: number;
 }
@@ -12,21 +12,15 @@ export interface Player {
 export const PlayContext = createContext<Player | null>(null);
 
 function PlayController({ urls }: { urls: { [key: string]: string } }) {
-  const players = useRef(new Tone.Players(urls).toDestination()).current;
+  const volume = useRef(new Tone.Volume(-10).toDestination()).current;
+  const players = useRef(new Tone.Players(urls).connect(volume)).current;
   const musicalNotes = Object.keys(urls);
   const melodyNotes = useRef<string[][]>([]);
   const [currentPlayColumn, setCurrentPlayColumn] = useState(-1);
 
-  const playNote = (note: string) => {
-    try {
-      players.player(note).start().stop("+1");
-    } catch (err) {
-      console.log(`Error Tone.Players cannot accept ${note}. ${err}`);
-    }
-  };
 
   const player: Player = {
-    playNote: playNote,
+    players: players,
     melodyNotes: melodyNotes.current,
     currentPlayCulomn: currentPlayColumn,
   };
@@ -34,7 +28,7 @@ function PlayController({ urls }: { urls: { [key: string]: string } }) {
   return (
     <PlayContext.Provider value={player}>
       <GridController musicalNotes={musicalNotes}></GridController>
-      <MelodyDashboard setCurrentPlayColumn={setCurrentPlayColumn}></MelodyDashboard>
+      <MelodyDashboard setCurrentPlayColumn={setCurrentPlayColumn} volume={volume}></MelodyDashboard>
     </PlayContext.Provider>
   );
 }

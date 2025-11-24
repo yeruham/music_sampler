@@ -10,7 +10,7 @@ function NoteButton({ note, columnId }: { note: string, columnId: number }) {
   const handleClick = () => {
     const melodyNotes = player.melodyNotes
     if (!isActive){
-      player.playNote(note);
+      playNote(note);
       melodyNotes[columnId].push(note);
     }
     else{
@@ -18,6 +18,14 @@ function NoteButton({ note, columnId }: { note: string, columnId: number }) {
       melodyNotes[columnId].splice(indexOfNote, 1);
     }
     setIsActive(!isActive);
+  };
+
+  const playNote = (note: string) => {
+    try {
+      player.players.player(note).start().stop("+0.5");
+    } catch (err) {
+      console.log(`Error Tone.Players cannot accept ${note}. ${err}`);
+    }
   };
 
   const getClaasName = () => {

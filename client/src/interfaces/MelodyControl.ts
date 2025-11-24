@@ -4,4 +4,5 @@ export default interface MelodyControl{
     currentPlayColumn: number,
     setCurrentPlayColumn: React.Dispatch<React.SetStateAction<number>>,
     loopPlay: React.RefObject<boolean>,
+    speed: React.RefObject<number>,
 }

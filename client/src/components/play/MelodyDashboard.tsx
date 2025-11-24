@@ -1,21 +1,23 @@
+import * as Tone from 'tone'
 import { useContext, useEffect, useRef } from "react";
 import StartPlayButton from "./StartPlayButton";
 import LoopPlayButoon from "./LoopPlayButton";
 import StopPlayButton from "./StopPlayButton";
-import SpeedControlButton from "./SpeedControlButton";
+import SpeedControlInput from "./SpeedControlInput";
 import PausePlayButton from "./PausePlayButton";
+import VolumeControlInput from "./VolumeControlInput";
 import { PlayContext, type Player } from "../PlayController";
 import type MelodyControl from "../../interfaces/MelodyControl";
 import * as Play from '../../utils/play'
 
 
-function MelodyDashboard({ setCurrentPlayColumn }: { setCurrentPlayColumn: React.Dispatch<React.SetStateAction<number>> }) {
+function MelodyDashboard({ setCurrentPlayColumn, volume }: { setCurrentPlayColumn: React.Dispatch<React.SetStateAction<number>>, volume: Tone.Volume }) {
   const player = useContext(PlayContext) as Player;
   const isActivePlayer = useRef(false);
   const isPausedPlayer = useRef(false);
   const loopPlay = useRef(false);
   const currentPlayColumn = player.currentPlayCulomn;
-  const speedPlayer = useRef(500);
+  const speedPlayer = useRef(5);
   const volumePlayer = useRef(-1);
   const melodyNotes = player.melodyNotes;
 
@@ -32,6 +34,7 @@ function MelodyDashboard({ setCurrentPlayColumn }: { setCurrentPlayColumn: React
     isActivePlayer: isActivePlayer,
     isPausedPlayer: isPausedPlayer,
     loopPlay: loopPlay,
+    speed: speedPlayer,
   };
 
   return (
@@ -39,8 +42,9 @@ function MelodyDashboard({ setCurrentPlayColumn }: { setCurrentPlayColumn: React
       <StartPlayButton melodyControl={melodyControl}></StartPlayButton>
       <StopPlayButton melodyControl={melodyControl}></StopPlayButton>
       <LoopPlayButoon melodyControl={melodyControl}></LoopPlayButoon>
-      <SpeedControlButton></SpeedControlButton>
       <PausePlayButton melodyControl={melodyControl}></PausePlayButton>
+      <SpeedControlInput currentSpeed={speedPlayer}></SpeedControlInput>
+      <VolumeControlInput currentVolume={volume}></VolumeControlInput>
     </div>
   );
 }
