@@ -4,8 +4,9 @@ import GridController from "./grid/GridController";
 import MelodyDashboard from "./play/MelodyDashboard";
 
 export interface Player {
-  playNpte: (note: string) => void;
+  playNote: (note: string) => void;
   melodyNotes: string[][];
+  currentPlayCulomn: number;
 }
 
 export const PlayContext = createContext<Player | null>(null);
@@ -14,7 +15,8 @@ function PlayController({ urls }: { urls: { [key: string]: string } }) {
   const players = new Tone.Players(urls).toDestination();
   const musicalNotes = Object.keys(urls);
   const melodyNotes = useRef<string[][]>([]);
-  const currentPlay = useRef(-1);
+  // const currentPlay = useRef(-1);
+  const [currentPlayColumn, setCurrentPlayColumn] = useState(0);
 
   const playNote = (note: string) => {
     try {
@@ -25,14 +27,15 @@ function PlayController({ urls }: { urls: { [key: string]: string } }) {
   };
 
   const player: Player = {
-    playNpte: playNote,
+    playNote: playNote,
     melodyNotes: melodyNotes.current,
+    currentPlayCulomn: currentPlayColumn,
   };
 
   return (
     <PlayContext.Provider value={player}>
       <GridController musicalNotes={musicalNotes}></GridController>
-      <MelodyDashboard></MelodyDashboard>
+      <MelodyDashboard setCurrentPlayColumn={setCurrentPlayColumn}></MelodyDashboard>
     </PlayContext.Provider>
   );
 }

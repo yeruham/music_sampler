@@ -13,4 +13,6 @@
   background-color: rgb(255, 87, 87);
 }
 
-
+.playing{
+  opacity: 0.5;
+}

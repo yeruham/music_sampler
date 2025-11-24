@@ -10,7 +10,7 @@ function NoteButton({ note, columnId }: { note: string, columnId: number }) {
   const handleClick = () => {
     const melodyNotes = player.melodyNotes
     if (!isActive){
-      player.playNpte(note);
+      player.playNote(note);
       melodyNotes[columnId].push(note);
     }
     else{
@@ -20,9 +20,19 @@ function NoteButton({ note, columnId }: { note: string, columnId: number }) {
     setIsActive(!isActive);
   };
 
-  const className = isActive? "note-button active": "note-button";
+  const getClaasName = () => {
+    let className = "note-button";
+    if (isActive){
+      className += " active"
+    }
+    if (player.currentPlayCulomn == columnId){
+      className += " playing";
+    }
+    return className;
+  }
+
   return (
-    <button className={className} onClick={handleClick}>
+    <button className={getClaasName()} onClick={handleClick}>
       {note}
     </button>
   );

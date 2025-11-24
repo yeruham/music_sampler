@@ -8,12 +8,13 @@ import { PlayContext, type Player } from "../PlayController";
 import type MelodyControl from "../../interfaces/MelodyControl";
 
 
-function MelodyDashboard() {
+function MelodyDashboard({ setCurrentPlayColumn }: { setCurrentPlayColumn: React.Dispatch<React.SetStateAction<number>> }) {
   const player = useContext(PlayContext) as Player;
   const isActivePlayer = useRef(false);
   const isPausedPlayer = useRef(false);
   const loopPlay = useRef(false);
-  const [currentPlayColumn, setCurrentPlayColumn] = useState(0);
+  // const [currentPlayColumn, setCurrentPlayColumn] = useState(0);
+  const currentPlayColumn = player.currentPlayCulomn;
   const speedPlayer = useRef(500);
   const volumePlayer = useRef(-1);
   const melodyNotes = player.melodyNotes;
@@ -29,7 +30,7 @@ function MelodyDashboard() {
         console.log(currentPlayColumn)
         const column = melodyNotes[currentPlayColumn];
         column.forEach((note) => {
-          player.playNpte(note);
+          player.playNote(note);
         });
         await deley(msBetweenColumns);
         if (isActivePlayer.current){
