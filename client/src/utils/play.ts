@@ -1,29 +1,63 @@
-import type MelodyControl from '../interfaces/MelodyControl';
-import { type Player } from '../components/PlayController'
+import type MelodyControl from "../interfaces/MelodyControl";
+import { type Player } from "../components/PlayController";
 
+export interface PlayGridProps {
+  player: Player;
+  melodyControl: MelodyControl;
+}
 
-export async function playGrid({  melodyNotes, playNote, isActivePlayer, isPausedPlayer, currentPlayColumn, setCurrentPlayColumn, loopPlay }: Player & MelodyControl){
+export async function playGrid({ player, melodyControl }: PlayGridProps) {
+  const melodyNotes = player.melodyNotes;
+  const {
+    isActivePlayer,
+    isPausedPlayer,
+    currentPlayColumn,
+    setCurrentPlayColumn,
+    loopPlay,
+  } = melodyControl;
+
   if (isActivePlayer.current && !isPausedPlayer.current) {
-    const msBetweenColumns = 500;
     if (currentPlayColumn < melodyNotes.length) {
-      const column = melodyNotes[currentPlayColumn];
-      column.forEach((note) => {
-        playNote(note);
-      });
-      await deley(msBetweenColumns);
-      if (isActivePlayer.current && !isPausedPlayer.current) {
-        setCurrentPlayColumn(currentPlayColumn + 1);
-      }
+      playMelody({ player, melodyControl });
     } else {
       if (loopPlay.current) {
         setCurrentPlayColumn(0);
       } else {
-        isActivePlayer.current = false;
-        setCurrentPlayColumn(-1);
+        endPlay(isActivePlayer, setCurrentPlayColumn);
       }
     }
   }
-};
+}
+
+async function playMelody({ player, melodyControl }: PlayGridProps) {
+  const { melodyNotes, playNote } = player;
+  const {
+    isActivePlayer,
+    isPausedPlayer,
+    currentPlayColumn,
+    setCurrentPlayColumn,
+  } = melodyControl;
+
+  const msBetweenColumns = 500;
+  const column = melodyNotes[currentPlayColumn];
+  column.forEach((note) => {
+    playNote(note);
+  });
+  await deley(msBetweenColumns);
+  if (isActivePlayer.current && !isPausedPlayer.current) {
+    setCurrentPlayColumn(melodyControl.currentPlayColumn + 1);
+  }
+}
+
+
+function endPlay(
+  isActivePlayer: React.RefObject<boolean>,
+  setCurrentPlayColumn: (num: number) => void
+) {
+  isActivePlayer.current = false;
+  setCurrentPlayColumn(-1);
+}
+
 
 const deley = (ms: number) => {
   return new Promise((resulve) => setTimeout(resulve, ms));
