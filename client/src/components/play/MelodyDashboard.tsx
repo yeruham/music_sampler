@@ -1,5 +1,6 @@
 import * as Tone from 'tone'
 import { useContext, useEffect, useRef } from "react";
+import './style/MelodyDashboard.css'
 import StartPlayButton from "./StartPlayButton";
 import LoopPlayButoon from "./LoopPlayButton";
 import StopPlayButton from "./StopPlayButton";
@@ -38,7 +39,7 @@ function MelodyDashboard({ setCurrentPlayColumn, volume }: { setCurrentPlayColum
   };
 
   return (
-    <div id=" melody-dashboard">
+    <div className="melody-dashboard">
       <StartPlayButton melodyControl={melodyControl}></StartPlayButton>
       <StopPlayButton melodyControl={melodyControl}></StopPlayButton>
       <LoopPlayButoon melodyControl={melodyControl}></LoopPlayButoon>

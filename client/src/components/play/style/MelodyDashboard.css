@@ -1,0 +1,26 @@
+.melody-dashboard{
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    background-color: rgb(165, 32, 32);
+    color: white;
+    width: 100px;
+    height: 50px;
+    border-radius: 5px;
+    border-width: 0;
+    margin-right: 10px;
+}
+
+
+button:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+button:active {
+    background-color: white;
+    color:  rgb(165, 32, 32);
+}
