@@ -1,4 +1,4 @@
 export default interface InstrumentsProps {
-  instruments: { [key: string]: string };
+  instruments: string[];
   setInstrument: React.Dispatch<React.SetStateAction<string>>;
 }

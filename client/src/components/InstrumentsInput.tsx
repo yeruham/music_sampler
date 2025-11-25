@@ -7,7 +7,7 @@ function InstrumentsInput({ instruments, setInstrument }: InstrumentsProps){
     }
 
     return (<select onChange={(e) => changeInstrument(e.target.value)}>
-        {Object.keys(instruments).map((instrument, index) => {
+        {instruments.map((instrument, index) => {
             return (<option key={index}>{instrument}</option>)
         })}
     </select>)
