@@ -17,7 +17,7 @@ function GridController({
   const maxGridColumns = maxColumns || 12;
 
   return (
-    <div className="grid-controller">
+    <div className="part grid-controller">
       <div className="controll-buttons">
         {gridColumns < maxGridColumns && (
           <AddNotesColumnButton

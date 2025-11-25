@@ -1,12 +1,19 @@
 .notes-grid {
-  background-color: rgb(219, 235, 254);
+  /* background-color: rgb(219, 235, 254); */
   padding: 10px;
-  padding-left: 30px;
   display: grid;
   justify-content: center;
   grid-auto-columns: 100px; 
   /* grid-template-rows: repeat(1, auto); */
   grid-auto-flow: column;
   /* column-gap: 5px; */
-  /* row-gap: 2px; */
+  /* row-gap: 0px; */
+  gap: 0;
+  overflow: scroll;
 }
+
+.notes-grid::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+

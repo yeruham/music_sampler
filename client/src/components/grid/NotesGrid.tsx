@@ -35,11 +35,11 @@ function NotesGrid({
   });
 
   const gridTemplateRowsStyle = {
-    gridTemplateRows: `repeat(${musicalNotes.length}, auto)`,
+    gridTemplateRows: `repeat(${musicalNotes.length}, 50px)`,
   };
 
   return (
-    <div className="notes-grid" style={gridTemplateRowsStyle}>
+    <div className="part notes-grid" style={gridTemplateRowsStyle}>
       {notesColumns}
     </div>
   );

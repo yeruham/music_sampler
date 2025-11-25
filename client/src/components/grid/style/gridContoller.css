@@ -1,6 +1,6 @@
 .grid-controller {
-    background-color: rgb(219, 235, 254);
-    padding-top: 5px;
+    /* background-color: rgb(219, 235, 254); */
+    /* padding-top: 5px; */
 }
 
 .controll-buttons {
@@ -9,6 +9,7 @@
 }
 
 .change-num-columns-button {
+    margin-top: 10px;
     background-color: rgb(165, 32, 32);
     color: white;
     width: 100px;

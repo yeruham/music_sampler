@@ -39,7 +39,7 @@ function MelodyDashboard({ setCurrentPlayColumn, volume }: { setCurrentPlayColum
   };
 
   return (
-    <div className="melody-dashboard">
+    <div className="part melody-dashboard">
       <StartPlayButton melodyControl={melodyControl}></StartPlayButton>
       <StopPlayButton melodyControl={melodyControl}></StopPlayButton>
       <LoopPlayButoon melodyControl={melodyControl}></LoopPlayButoon>
