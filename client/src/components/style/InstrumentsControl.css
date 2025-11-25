@@ -1,0 +1,8 @@
+.select-instrument {
+  background-color: rgb(163, 203, 252);
+  cursor: pointer;
+  width: 80px;
+  height: 30px;
+  border-radius: 5px;
+  padding-left: 10px;
+}
