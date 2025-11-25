@@ -13,8 +13,8 @@ function GridController({
   defultCulomns?: number;
   maxColumns?: number;
 }) {
-  const [gridColumns, setGridColumns] = useState(defultCulomns || 8);
-  const maxGridColumns = maxColumns || 12;
+  const [gridColumns, setGridColumns] = useState(defultCulomns || 20);
+  const maxGridColumns = maxColumns || 25;
 
   return (
     <div className="part grid-controller">

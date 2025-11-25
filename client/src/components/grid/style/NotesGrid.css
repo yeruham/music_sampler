@@ -1,14 +1,15 @@
 .notes-grid {
-  /* background-color: rgb(219, 235, 254); */
+  background-color:  rgb(255, 236, 195);
+  opacity: 0.8;
   padding: 10px;
   display: grid;
   justify-content: center;
-  grid-auto-columns: 100px; 
+  grid-auto-columns: 50px; 
   /* grid-template-rows: repeat(1, auto); */
   grid-auto-flow: column;
   /* column-gap: 5px; */
   /* row-gap: 0px; */
-  gap: 0;
+  gap: 1px;
   overflow: scroll;
 }
 

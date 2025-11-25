@@ -24,3 +24,21 @@ button:active {
     background-color: white;
     color:  rgb(165, 32, 32);
 }
+
+input {
+    margin-top: 5px;
+}
+
+.speed-input, .volume-input {
+    margin-left: 5px;
+    margin-right: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.speed-input {
+    /* direction: rtl; */
+}

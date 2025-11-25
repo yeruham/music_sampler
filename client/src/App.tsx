@@ -5,35 +5,39 @@ import InstrumentsControl from "./components/InstrumentsControl";
 
 function App() {
   const violinUrls = {
-    A3: "A3vH.wav",
-    B3: "B3vH.wav",
-    C3: "C3vH.wav",
-    D3: "D3vH.wav",
-    F3: "F3vH.wav",
+    C6: "piano/c6.mp3",
+    D6: "piano/d6.mp3",
+    E6: "piano/e6.mp3",
+    F6: "piano/f6.mp3",
+    G6: "piano/g6.mp3",
   };
 
   const pianoUrls = {
-    B3: "B3vH.wav",
-    C3: "C3vH.wav",
-    D3: "D3vH.wav",
-    F3: "F3vH.wav",
+     C6: "piano/c6.mp3",
+    D6: "piano/d6.mp3",
+    E6: "piano/e6.mp3",
+    F6: "piano/f6.mp3",
+    G6: "piano/g6.mp3",
+    A6: "piano/a6.mp3",
+    B6: "piano/b6.mp3",
   };
 
   const trumpetUrls = {
-    A3: "A3vH.wav",
-    B3: "B3vH.wav",
-    C3: "C3vH.wav",
+    B6: "piano/b6.mp3",
+    C6: "piano/c6.mp3",
+    D6: "piano/d6.mp3",
+    F6: "piano/f6.mp3",
   };
 
-  const [urls, setUrls] = useState<{ [key: string]: string }>(violinUrls);
+  const [urls, setUrls] = useState<{ [key: string]: string }>(pianoUrls);
 
   const instruments: { [key: string]: { [key: string]: string } } = {
+    piano: pianoUrls,
     violin: violinUrls,
     trumpet: trumpetUrls,
-    piano: pianoUrls,
   };
 
-  const defultInstrument = "violin";
+  const defultInstrument = "piano";
   const [currentInstrument, setCurrentInstrument] = useState(defultInstrument);
 
   useEffect(() => {

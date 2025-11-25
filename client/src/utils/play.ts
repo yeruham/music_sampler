@@ -42,10 +42,10 @@ async function playMelody({ player, melodyControl }: PlayGridProps) {
 
   const msBetweenColumns = speed.current * 100;
   const column = melodyNotes[currentPlayColumn];
-  players.stopAll();
+  // players.stopAll();
   column.forEach((note) => {
     try {
-      players.player(note).start();
+      players.player(note).start().stop(`+${speed.current / 5}`);
     } catch (err) {
       console.log(`Error Tone.Players cannot accept ${note}. ${err}`);
     }
@@ -63,7 +63,7 @@ function endPlay(
 ) {
   isActivePlayer.current = false;
   setCurrentPlayColumn(-1);
-  players.stopAll();
+  players.stopAll(Tone.now());
 }
 
 const deley = (ms: number) => {

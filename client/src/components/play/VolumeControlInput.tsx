@@ -20,7 +20,7 @@ const [volume , setVolume] = useState(currentVolume.volume.value);
   };
 
   return (
-    <div>
+    <div className="volume-input">
     <label>volume </label>
       <input
         type="range"

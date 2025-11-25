@@ -12,14 +12,15 @@ function SpeedControlInput({
   step?: number;
 }) {
   const [speed, setSpeed] = useState(currentSpeed.current);
-  const changeVolume = (num: string) => {
+  const changeVolume = (inputValue: string) => {
+    const num = (max || 8) + (min || 2) - +inputValue;
     currentSpeed.current = +num;
-    setSpeed(+num);
+    setSpeed(+inputValue);
   };
 
   return (
-    <div>
-      <label>speed </label>
+    <div className="speed-input">
+      <label>speed</label>
       <input
         type="range"
         value={speed}
