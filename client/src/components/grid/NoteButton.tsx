@@ -22,7 +22,7 @@ function NoteButton({ note, columnId }: { note: string, columnId: number }) {
 
   const playNote = (note: string) => {
     try {
-      player.players.player(note).start().stop("+0.5");
+      player.players.current.player(note).start().stop("+0.5");
     } catch (err) {
       console.log(`Error Tone.Players cannot accept ${note}. ${err}`);
     }

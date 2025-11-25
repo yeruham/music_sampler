@@ -45,7 +45,7 @@ async function playMelody({ player, melodyControl }: PlayGridProps) {
   // players.stopAll();
   column.forEach((note) => {
     try {
-      players.player(note).start().stop(`+${speed.current / 5}`);
+      players.current.player(note).start().stop(`+${speed.current / 5}`);
     } catch (err) {
       console.log(`Error Tone.Players cannot accept ${note}. ${err}`);
     }
@@ -57,13 +57,13 @@ async function playMelody({ player, melodyControl }: PlayGridProps) {
 }
 
 function endPlay(
-  players: Tone.Players,
+  players: React.RefObject<Tone.Players>,
   isActivePlayer: React.RefObject<boolean>,
   setCurrentPlayColumn: (num: number) => void
 ) {
   isActivePlayer.current = false;
   setCurrentPlayColumn(-1);
-  players.stopAll(Tone.now());
+  players.current.stopAll(Tone.now());
 }
 
 const deley = (ms: number) => {
