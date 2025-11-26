@@ -24,7 +24,7 @@ function SpeedControlInput({
       <input
         type="range"
         value={speed}
-        min={min || 2}
+        min={min || 1}
         max={max || 8}
         step={step || 1}
         onChange={(e) => changeVolume(e.target.value)}
