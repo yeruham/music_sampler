@@ -1,5 +1,5 @@
 import express from 'express'
-import { getInstruments, getNotesOfInstrument } from '../services/minioMusic.js'
+import { getInstruments, getNotesOfInstrument, getAudioFile } from '../services/minioMusic.js'
  
 
 export const instrumentsRouter = express.Router();
@@ -22,5 +22,23 @@ instrumentsRouter.get('/:instrument', async (req, res) => {
     }
     catch{
         res.status(404).send({message: `Error: cannot get any notes of ${instrument}`})
+    }
+})
+
+instrumentsRouter.get('/:instrument/:note', async (req, res) => {
+    const instrument = req.params.instrument;
+    const note = req.params.note;
+    try{
+        const stream = await getAudioFile(instrument, note);
+        res.setHeader("Content-Type", "audio/mpeg");
+        if (stream){
+            stream.pipe(res);
+        }
+        else{
+            res.status(404).send({message: `Error: cannot get ${note} file of ${instrument}`});
+        }
+    }
+    catch{
+        res.status(404).send({message: `Error: cannot get ${note} file of ${instrument}`});
     }
 })
