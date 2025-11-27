@@ -1,6 +1,6 @@
 import express from 'express'
 import dotenv from 'dotenv'
-import { instrumentsRouter } from './routes/instruments.js';
+import { notesRouter } from './routes/notes.js';
 
 dotenv.config();
 
@@ -8,7 +8,7 @@ const app = express();
 let port;
 try { port = Number(process.env.APP_PORT) } catch{ port = 9000 }
 
-app.use('/instruments', instrumentsRouter);
+app.use('/instruments', notesRouter);
 
 
 app.listen(port, () => {
