@@ -22,7 +22,7 @@ export async function getUrlsOfInstrument(instrument: string, addPrefix: boolean
       const response = await fetch(url);
       if (response.ok){
         const notesUrls = await response.json();
-        if (addPrefix){
+        if (notesUrls && addPrefix){
           return addPrefixUrls(notesUrls);
         }
         else{

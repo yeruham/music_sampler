@@ -11,6 +11,7 @@ function App() {
   const urlsByInstruments = useRef<{ [key: string]: { [key: string]: string } }>({});
   const [notesUrls, setNotesUrls] = useState<{ [key: string]: string } | undefined>();
   const [currentInstrument, setCurrentInstrument] = useState<string | undefined>();
+  const loadInfoSuccess: boolean = currentInstrument && notesUrls ? true : false;
 
   const loadInfo = async () => {
     instruments.current = await getInstruments();
@@ -18,8 +19,12 @@ function App() {
       for (let i = 0; i < instruments.current.length; i++){
         const instrument = instruments.current![i];
         const urls = await getUrlsOfInstrument(instrument);
-        if (urls){
+        if (urls && Object.keys(urls).length > 0){
           urlsByInstruments.current[instrument] = urls;
+        }
+        else{
+          instruments.current.splice(i, 1);
+          i--;
         }
       }
     }
@@ -28,14 +33,14 @@ function App() {
   useEffect(() => {
     loadInfo().then( () => {
       if (instruments.current && instruments.current.length > 0){
-        const instrument = instruments.current![0];
+        const instrument = instruments.current[0];
         const notesUrls = urlsByInstruments.current[instrument];
         setNotesUrls(notesUrls);
         setCurrentInstrument(instrument);
       }
     }
     ).catch( (err) => {
-      console.log("Error" + err);
+      console.log("Error: cannot load info from the server " + err);
     })
   }, [])
 
@@ -49,8 +54,8 @@ function App() {
 
   return (
     <>
-    {(!currentInstrument || !notesUrls) && <p>Loading music notes</p>}
-    { currentInstrument && notesUrls && 
+    {!loadInfoSuccess && <p>Loading music notes</p>}
+    {loadInfoSuccess && 
     <>
       <div className="head">
         <h1>music sampler</h1>
@@ -59,7 +64,7 @@ function App() {
           setInstrument={setCurrentInstrument}
         ></InstrumentsControl>
       </div>
-      <PlayController urls={notesUrls}></PlayController>
+      <PlayController urls={notesUrls!}></PlayController>
       </>}
     </>
   );
