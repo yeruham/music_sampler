@@ -1,4 +1,4 @@
-import type InstrumentsProps from "../interfaces/InstrumentsProps";
+import type InstrumentsProps from "../../interfaces/InstrumentsProps";
 
 function InstrumentsInput({ instruments, setInstrument }: InstrumentsProps) {
   const changeInstrument = (instrument: string) => {

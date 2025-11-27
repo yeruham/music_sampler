@@ -1,7 +1,7 @@
 import "./App.css";
 import { useEffect, useRef, useState } from "react";
 import PlayController from "./components/PlayController";
-import InstrumentsControl from "./components/InstrumentsControl";
+import InstrumentsControl from "./components/instruments/InstrumentsControl";
 import { getInstruments, getUrlsOfInstrument } from "./utils/fetchUrlsNotes"
 
 
@@ -11,7 +11,7 @@ function App() {
   const urlsByInstruments = useRef<{ [key: string]: { [key: string]: string } }>({});
   const [notesUrls, setNotesUrls] = useState<{ [key: string]: string } | undefined>();
   const [currentInstrument, setCurrentInstrument] = useState<string | undefined>();
-  const loadInfoSuccess: boolean = currentInstrument && notesUrls ? true : false;
+  const loadInfoSuccess: boolean = notesUrls && instruments.current ? true : false;
 
   const loadInfo = async () => {
     instruments.current = await getInstruments();

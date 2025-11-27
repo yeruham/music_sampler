@@ -1,6 +1,6 @@
 import "./style/InstrumentsControl.css";
 import InstrumentsInput from "./InstrumentsInput";
-import type InstrumentsProps from "../interfaces/InstrumentsProps";
+import type InstrumentsProps from "../../interfaces/InstrumentsProps";
 
 function InstrumentsControl({ instruments, setInstrument }: InstrumentsProps) {
   return (

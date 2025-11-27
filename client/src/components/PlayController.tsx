@@ -13,7 +13,7 @@ export const PlayContext = createContext<Player | null>(null);
 
 function PlayController({ urls }: { urls: { [key: string]: string } }) {
   const volume = useRef(new Tone.Volume(-10).toDestination()).current;
-  const players = useRef(new Tone.Players(urls).connect(volume));
+  const players = useRef(new Tone.Players({urls, onerror: (err) => {console.error("Error loading buffer", err);}}).connect(volume));
   const musicalNotes = Object.keys(urls);
   const melodyNotes = useRef<string[][]>([]);
   const [currentPlayColumn, setCurrentPlayColumn] = useState(-1);
