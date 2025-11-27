@@ -7,7 +7,7 @@ export const notesRouter = express.Router();
 notesRouter.get('/', async (req, res) => {
     try{
         const instruments = await getInstruments();
-        res.status(200).send({instruments: instruments});
+        res.status(200).send(instruments);
     }
     catch{
         const message = "Error: cannot get instruments";
@@ -18,8 +18,8 @@ notesRouter.get('/', async (req, res) => {
 notesRouter.get('/:instrument', async (req, res) => {
     const instrument = req.params.instrument;
     try{
-        const instruments = await getNotesOfInstrument(instrument);
-        res.status(200).send({instruments: instruments});
+        const notes= await getNotesOfInstrument(instrument);
+        res.status(200).send(notes);
     }
     catch (err){
         // const message =  `Error: cannot get any notes of ${instrument}`;

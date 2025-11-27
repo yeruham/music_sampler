@@ -1,9 +1,76 @@
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import PlayController from "./components/PlayController";
 import InstrumentsControl from "./components/InstrumentsControl";
+import { getInstruments, getUrlsOfInstrument } from "./utils/fetchNotes"
+
 
 function App() {
+
+  const instruments = useRef<string[] | undefined>(undefined);
+  const urlsByInstruments: { [key: string]: { [key: string]: string } } = {};
+
+  useEffect(() => {
+  loadnotesInfo().then( () => {
+    if (instruments && instruments.current!.length > 0){
+      const instrument = instruments.current![0];
+      const urlsOfInstrument = urlsByInstruments[instrument];
+      setUrls(urlsOfInstrument);
+      setCurrentInstrument(instrument);
+    }
+  }
+  ).catch(
+
+  )
+  }, [])
+
+  const loadnotesInfo = async () => {
+    instruments.current = await getInstruments();
+    console.log(instruments);
+    for (let i = 0; i < instruments.current!.length; i++){
+      const instrument = instruments.current![i];
+      const urls = await getUrlsOfInstrument(instrument);
+      console.log(urls)
+      if (urls){
+        urlsByInstruments[instrument] = urls;
+      }
+    }
+    console.log(urlsByInstruments);
+  }
+
+
+
+
+  const [urls, setUrls] = useState<{ [key: string]: string }>();
+
+  const [currentInstrument, setCurrentInstrument] = useState<string | undefined>();
+
+  useEffect(() => {
+    if (currentInstrument && urlsByInstruments[currentInstrument]){
+      const urlsOfInstrument = urlsByInstruments[currentInstrument];
+      setUrls(urlsOfInstrument);
+    }
+  }, [currentInstrument]);
+
+
+  return (
+    <>
+      <div className="head">
+        <h1>music sampler</h1>
+      { currentInstrument && urls &&  <InstrumentsControl
+          instruments={instruments.current!}
+          setInstrument={setCurrentInstrument}
+        ></InstrumentsControl>}
+      </div>
+      {currentInstrument &&  urls &&  <PlayController urls={urls!}></PlayController>}
+    </>
+  );
+}
+
+export default App;
+
+
+
   const accordionUrls = {
     C5: "accordion/C5.wav",
     D5: "accordion/D5.wav",
@@ -34,36 +101,9 @@ function App() {
     B2: "guitar/B2.flac",
   };
 
-  const [urls, setUrls] = useState<{ [key: string]: string }>(pianoUrls);
 
-  const instruments: { [key: string]: { [key: string]: string } } = {
+   const instruments: { [key: string]: { [key: string]: string } } = {
     piano: pianoUrls,
     accordion: accordionUrls,
     guitar: guitarUrls,
   };
-
-  const defultInstrument = "piano";
-  const [currentInstrument, setCurrentInstrument] = useState(defultInstrument);
-
-  useEffect(() => {
-    if (instruments[currentInstrument]) {
-      const urlsOfInstrument = instruments[currentInstrument];
-      setUrls(urlsOfInstrument);
-    }
-  }, [currentInstrument]);
-
-  return (
-    <>
-      <div className="head">
-        <h1>music sampler</h1>
-        <InstrumentsControl
-          instruments={Object.keys(instruments)}
-          setInstrument={setCurrentInstrument}
-        ></InstrumentsControl>
-      </div>
-      <PlayController urls={urls}></PlayController>
-    </>
-  );
-}
-
-export default App;
