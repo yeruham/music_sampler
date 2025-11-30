@@ -25,7 +25,6 @@ const SaveMelodtButton = () => {
     }).catch((err) => {
       console.log(`Error: cannot save melody ${melodyName}. ` + err);
     });
-    console.log("saved");
     setIsActive(false);
   };
 
