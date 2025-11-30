@@ -1,6 +1,9 @@
-export const prefixUrl = "http://localhost:3000";
-export const basicUrl = `${prefixUrl}/instruments`;
+import dotenv from "dotenv";
 
+dotenv.config();
+
+export const prefixUrl = process.env.SERVER || "http://localhost:3000";
+export const basicUrl = process.env.NOTES_URL || `${prefixUrl}/instruments`;
 
 export async function getInstruments(): Promise<string[] | undefined>{
     try{
@@ -23,7 +26,6 @@ export async function getUrlsOfInstrument(instrument: string, addPrefix: boolean
       if (response.ok){
         let notesUrls = await response.json();
         if (notesUrls && addPrefix){
-          // return addPrefixUrls(notesUrls);
           notesUrls = addPrefixUrls(notesUrls);
         }
         if (sorted){

@@ -64,7 +64,7 @@ function App() {
           setInstrument={setCurrentInstrument}
         ></InstrumentsControl>
       </div>
-      <PlayController urls={notesUrls!}></PlayController>
+      <PlayController urls={notesUrls!} instrument={currentInstrument!}></PlayController>
       </>}
     </>
   );

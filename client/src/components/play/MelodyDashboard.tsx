@@ -10,6 +10,7 @@ import VolumeControlInput from "./VolumeControlInput";
 import { PlayContext, type Player } from "../PlayController";
 import type MelodyControl from "../../interfaces/MelodyControl";
 import * as Play from '../../utils/play'
+import SaveMelodtButton from "./SaveMelodyButton";
 
 
 function MelodyDashboard({ setCurrentPlayColumn, volume }: { setCurrentPlayColumn: React.Dispatch<React.SetStateAction<number>>, volume: Tone.Volume }) {
@@ -19,9 +20,6 @@ function MelodyDashboard({ setCurrentPlayColumn, volume }: { setCurrentPlayColum
   const loopPlay = useRef(false);
   const currentPlayColumn = player.currentPlayCulomn;
   const speedPlayer = useRef(5);
-  const volumePlayer = useRef(-1);
-  const melodyNotes = player.melodyNotes;
-
 
 
   useEffect(() => {
@@ -40,6 +38,7 @@ function MelodyDashboard({ setCurrentPlayColumn, volume }: { setCurrentPlayColum
 
   return (
     <div className="part melody-dashboard">
+      <SaveMelodtButton></SaveMelodtButton>
       <StartPlayButton melodyControl={melodyControl}></StartPlayButton>
       <StopPlayButton melodyControl={melodyControl}></StopPlayButton>
       <LoopPlayButoon melodyControl={melodyControl}></LoopPlayButoon>

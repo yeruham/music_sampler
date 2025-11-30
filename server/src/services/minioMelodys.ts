@@ -1,4 +1,3 @@
-import { json } from "stream/consumers";
 import { minioClient } from "../config/minio.js";
 import dotenv from "dotenv";
 

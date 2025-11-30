@@ -7,11 +7,12 @@ export interface Player {
   players: React.RefObject<Tone.Players>;
   melodyNotes: string[][];
   currentPlayCulomn: number;
+  instrument: string;
 }
 
 export const PlayContext = createContext<Player | null>(null);
 
-function PlayController({ urls }: { urls: { [key: string]: string } }) {
+function PlayController({ urls, instrument }: { urls: { [key: string]: string }, instrument: string }) {
   const volume = useRef(new Tone.Volume(-10).toDestination()).current;
   const players = useRef(new Tone.Players({urls, onerror: (err) => {console.error("Error loading buffer", err);}}).connect(volume));
   const musicalNotes = Object.keys(urls);
@@ -23,6 +24,7 @@ function PlayController({ urls }: { urls: { [key: string]: string } }) {
     players: players,
     melodyNotes: melodyNotes.current,
     currentPlayCulomn: currentPlayColumn,
+    instrument: instrument,
   };
 
   useEffect(() => {
