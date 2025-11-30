@@ -16,18 +16,20 @@ export async function getInstruments(): Promise<string[] | undefined>{
 }
 
 
-export async function getUrlsOfInstrument(instrument: string, addPrefix: boolean=true): Promise<{ [key: string]: string } | undefined>{
+export async function getUrlsOfInstrument(instrument: string, addPrefix: boolean=true, sorted: boolean=true): Promise<{ [key: string]: string } | undefined>{
     const url = `${basicUrl}/${instrument}`;
     try{
       const response = await fetch(url);
       if (response.ok){
-        const notesUrls = await response.json();
+        let notesUrls = await response.json();
         if (notesUrls && addPrefix){
-          return addPrefixUrls(notesUrls);
+          // return addPrefixUrls(notesUrls);
+          notesUrls = addPrefixUrls(notesUrls);
         }
-        else{
+        if (sorted){
+          notesUrls = sortNotesUrls(notesUrls);
+        }
           return notesUrls;
-        } 
       }
     }
     catch (err){
@@ -42,5 +44,15 @@ function addPrefixUrls(urls: {[key: string]: string}): {[key: string]: string}{
     const fullUrl = `${prefixUrl}/${urls[key]}`;
     fullUrls[key] = fullUrl;
   })
+  return fullUrls;
+}
+
+function sortNotesUrls(urls: {[key: string]: string}): {[key: string]: string}{
+  const listUrls = Object.entries(urls);
+  listUrls.sort((a, b) => {
+    const order = "CDEFGHIJKLMNOPQRSTUVWXYZAB";
+    return order.indexOf(a[0][0].toUpperCase()) - order.indexOf(b[0][0].toUpperCase());
+  });
+  const fullUrls = Object.fromEntries(listUrls);
   return fullUrls;
 }
