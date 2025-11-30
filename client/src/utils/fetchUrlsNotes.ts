@@ -1,9 +1,5 @@
-import dotenv from "dotenv";
-
-dotenv.config();
-
-export const prefixUrl = process.env.SERVER || "http://localhost:3000";
-export const basicUrl = process.env.NOTES_URL || `${prefixUrl}/instruments`;
+export const prefixUrl =  "http://localhost:3000";
+export const basicUrl = `${prefixUrl}/instruments`;
 
 export async function getInstruments(): Promise<string[] | undefined>{
     try{
