@@ -1,5 +1,5 @@
 import { Readable } from 'stream'
- import { minioClient } from "../config/minio.js";
+import { minioClient } from "../config/minio.js";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -12,7 +12,7 @@ export async function getAudioStreamFile(instrument: string, fileName: string): 
     const url = `${instrumentUrl}/${instrument}/${fileName}`
     const stream = await minioClient.getObject(music_bucket, url);
     stream.on("error", (err) => {
-      console.log(`${err}: the stream acquisition process failed.`);
+      console.log(`${err}: the stream process failed.`);
     })
     return stream;
   } catch (err) {
@@ -46,7 +46,7 @@ export async function getInstruments(): Promise<string[]> {
   await new Promise<void>((resolve, reject) => {
     stream.on("data", (obj) => {
       const perfix = obj.prefix?.split("/")[1];
-      if (perfix) {
+      if (obj.prefix && perfix) {
         instruments.push(perfix);
       }
     });

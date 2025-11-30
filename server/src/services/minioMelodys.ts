@@ -29,16 +29,16 @@ export async function getMelodysNames(): Promise<string[]> {
 export async function putMelody( melody: object, melodyName: string ): Promise<void> {
   try {
     const jsonMelody = JSON.stringify(melody);
-    await minioClient.putObject(music_bucket, melodyName, jsonMelody);
+    await minioClient.putObject(music_bucket, `${melodysUrl}/${melodyName}.json`, jsonMelody);
   } catch (err) {
     console.log(`${err}: cannot put object ${melody} at ${melodysUrl}/ url.`);
     throw err;
   }
 }
 
-export async function getMelodyByName( melodyName: string ): Promise<string[][] | undefined> {
+export async function getMelodyByName( melodyName: string ): Promise<object | undefined> {
   let melody;
-  const stream = await minioClient.getObject(music_bucket, melodyName);
+  const stream = await minioClient.getObject(music_bucket, `${melodysUrl}/${melodyName}.json`);
   await new Promise<void>((resolve, reject) => {
     let data = "";
     stream.on("data", (chunk) => {
