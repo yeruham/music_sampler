@@ -11,8 +11,8 @@ export async function getMelodysNames(): Promise<string[]> {
   const stream = minioClient.listObjectsV2(music_bucket, `${melodysUrl}/`);
   await new Promise<void>((resolve, reject) => {
     stream.on("data", (obj) => {
-    const perfix = obj.prefix?.split("/")[1];
-      if ( obj.prefix && perfix) {
+    const perfix = obj.name?.split("/")[1];
+      if ( obj.name && perfix) {
         melodysIds.push(perfix);
       }
     });

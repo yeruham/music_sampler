@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import PlayController from "./components/PlayController";
 import InstrumentsControl from "./components/instruments/InstrumentsControl";
 import { getInstruments, getUrlsOfInstrument } from "./utils/fetchUrlsNotes"
+import SavedMelodysMenu  from './components/melodys/SavedMelodysMenu'
 
 
 function App() {
@@ -58,6 +59,7 @@ function App() {
     {loadInfoSuccess && 
     <>
       <div className="head">
+        <SavedMelodysMenu></SavedMelodysMenu>
         <h1>music sampler</h1>
        <InstrumentsControl
           instruments={instruments.current!}
