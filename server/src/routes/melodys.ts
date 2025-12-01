@@ -15,19 +15,22 @@ melodysRouter.get('/', async (req, res) => {
 })
 
 
-melodysRouter.post('/:name', async (req, res) => {
+melodysRouter.post('/', async (req, res) => {
     try {
-        const newMelody = req.body;
-        const melodyName = req.params.name;
-        console.log(newMelody)
-        console.log(typeof newMelody)
-        if (newMelody && "instrument" in newMelody && "melody" in newMelody){
-            await putMelody(newMelody, melodyName);
+        const melody = req.body?.melody;
+        const instrument = req.body?.instrument;
+        const melodyName = req.body?.name;
+        if (melody && instrument && melodyName){
+            const fullMelody = {
+                melody: melody,
+                instrument: instrument
+            };
+            await putMelody(fullMelody, melodyName);
             const message = `melody ${melodyName} added successfully`;
             res.status(201).send({message: message});
         }
         else{
-            const message = `melody object must contain instrument and melody`;
+            const message = `melody object must contain 'name', 'instrument', 'melody'`;
             res.status(400).send({message: message});
         }
     }

@@ -1,0 +1,58 @@
+.save-melody-button {
+  background-color: rgb(48, 93, 189);
+  height: 50px;
+  border-radius: 10px;
+}
+
+.save-melody-conatiner {
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  padding: 2px;
+  width: 20%;
+  height: 50px;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+
+.save-melody-input-text {
+  margin: 0;
+  width: 60%;
+  height: 40px;
+  font-size: 15px;
+  border: 0px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.save-melody-input-text:focus {
+  outline: none;
+  background-color: #8cc6f9;
+  box-shadow: 0 0 5px #4a90e2;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.save-melody-buttons {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+}
+
+.save-melody-button {
+  border-radius: 5px;
+  margin: 0;
+  background-color: rgb(48, 93, 189);
+  border: 1px solid white;
+  color: white;
+}
+
+.save-melody-button:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.save-melody-button:active {
+  color: rgb(48, 93, 189);
+  background-color: white;
+}

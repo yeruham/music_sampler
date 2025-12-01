@@ -1,5 +1,6 @@
 import { useContext, useState, useRef } from "react";
 import { PlayContext, type Player } from "../PlayController";
+import "./style/saveMelody.css";
 
 const MELODY_URL = "http://localhost:3000/melodys";
 
@@ -10,34 +11,55 @@ const SaveMelodtButton = () => {
 
   const saveCurrentMelody = () => {
     const melodyName = inputValue.current;
-    const reqBody = JSON.stringify({
-      name: melodyName,
-      instrument: player?.instrument,
-      melody: player?.melodyNotes,
-    });
-    fetch(MELODY_URL, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: reqBody,
-    }).catch((err) => {
-      console.log(`Error: cannot save melody ${melodyName}. ` + err);
-    });
+    if (melodyName != "") {
+      const reqBody = JSON.stringify({
+        name: melodyName,
+        instrument: player?.instrument,
+        melody: player?.melodyNotes,
+      });
+      fetch(MELODY_URL, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: reqBody,
+      }).catch((err) => {
+        console.log(`Error: cannot save melody ${melodyName}. ` + err);
+      });
+      restartButoon();
+    }
+  };
+
+  const restartButoon = () => {
+    inputValue.current = "";
     setIsActive(false);
   };
 
   return (
-    <>
+    <div className="save-melody-conatiner">
       {isActive ? (
         <>
           <input
             type="text"
             placeholder="melody name"
+            className="save-melody-input-text"
             onChange={(e) => (inputValue.current = e.target.value)}
           />
-          <input type="submit" value="submit" onClick={saveCurrentMelody}/>
+          <div className="save-melody-buttons">
+            <input
+              type="submit"
+              value="save"
+              onClick={saveCurrentMelody}
+              className="save-melody-button"
+            />
+            <input
+              type="submit"
+              value="cancel"
+              onClick={restartButoon}
+              className="save-melody-button"
+            />
+          </div>
         </>
       ) : (
         <button
@@ -47,7 +69,7 @@ const SaveMelodtButton = () => {
           save
         </button>
       )}
-    </>
+    </div>
   );
 };
 
