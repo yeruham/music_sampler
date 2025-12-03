@@ -1,5 +1,11 @@
+import { getMelody } from "../../utils/fetchMelodys";
+
 const SavedMelodyButton = ({ melodyName }: { melodyName: string }) => {
-    return (<button className="melody-button">{melodyName}</button>)
+    const handleClick = async () => {
+        const melody = await getMelody(melodyName);
+        // console.log(melody);
+    }
+    return (<button className="melody-button" onClick={handleClick}>{melodyName}</button>)
 }
 
 export default SavedMelodyButton;
