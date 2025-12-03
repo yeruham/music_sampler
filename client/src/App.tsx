@@ -13,6 +13,8 @@ function App() {
   const [notesUrls, setNotesUrls] = useState<{ [key: string]: string } | undefined>();
   const [currentInstrument, setCurrentInstrument] = useState<string | undefined>();
   const loadInfoSuccess: boolean = notesUrls && instruments.current ? true : false;
+  const [melodyNotes, setMelodyNotes] = useState<string[][]>([]);
+
 
   const loadInfo = async () => {
     instruments.current = await getInstruments();
@@ -59,14 +61,14 @@ function App() {
     {loadInfoSuccess && 
     <>
       <div className="head">
-        <SavedMelodysMenu></SavedMelodysMenu>
+        <SavedMelodysMenu setCurrentInstrument={setCurrentInstrument} setMelodyNotes={setMelodyNotes}></SavedMelodysMenu>
         <h1>music sampler</h1>
        <InstrumentsControl
           instruments={instruments.current!}
           setInstrument={setCurrentInstrument}
         ></InstrumentsControl>
       </div>
-      <PlayController urls={notesUrls!} instrument={currentInstrument!}></PlayController>
+      <PlayController urls={notesUrls!} instrument={currentInstrument!} melodyNotes={melodyNotes}></PlayController>
       </>}
     </>
   );
