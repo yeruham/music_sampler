@@ -1,10 +1,11 @@
 import NoteButton from "./NoteButton";
+import type Note from "../../interfaces/note";
 
-function NotesColumn({ musicalNotes, columnId }: { musicalNotes: string[], columnId: number }) {
+function NotesColumn({ musicalNotes, columnId }: { musicalNotes:  Note[], columnId: number }) {
   return (
     <>
-      {musicalNotes.map((note) => {
-        return <NoteButton note={note} columnId={columnId} key={note + columnId} />;
+      {musicalNotes.map(({ name, active }) => {
+        return <NoteButton name={name} active={active} columnId={columnId} key={name + columnId} />;
       })}
     </>
   );

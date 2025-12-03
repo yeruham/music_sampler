@@ -1,15 +1,10 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 import "./style/NotesGrid.css";
 import NotesColumn from "./NotesColumn";
 import { PlayContext, type Player } from "../PlayController";
+import type Note from "../../interfaces/note";
 
-function NotesGrid({
-  musicalNotes,
-  gridColumns,
-}: {
-  musicalNotes: string[];
-  gridColumns: number;
-}) {
+function NotesGrid({ musicalNotes, gridColumns }: { musicalNotes: string[]; gridColumns: number; }) {
   const player = useContext(PlayContext) as Player;
 
   useEffect(() => {
@@ -24,15 +19,29 @@ function NotesGrid({
     }
   }, [gridColumns]);
 
+
+  const getNotesList = (culomnId: number): Note[] => {
+    const notes: Note[] = [];
+    const notesActivity = player.melodyNotes[culomnId];
+    musicalNotes.forEach((noteName) => {
+        const noteActive = notesActivity ? notesActivity.includes(noteName) : false;
+        const note: Note = {name: noteName, active: noteActive};
+        notes.push(note);
+    })
+    return notes;
+  }
+
   const notesColumns = Array.from({ length: gridColumns }, (_, i) => {
+    const notes = getNotesList(i);
     return (
       <NotesColumn
-        musicalNotes={musicalNotes}
+        musicalNotes={notes}
         columnId={i}
         key={i}
       ></NotesColumn>
     );
   });
+
 
   const gridTemplateRowsStyle = {
     gridTemplateRows: `repeat(${musicalNotes.length}, 50px)`,
