@@ -6,6 +6,7 @@ import type Note from "../../interfaces/note";
 
 function NotesGrid({ musicalNotes, gridColumns }: { musicalNotes: string[]; gridColumns: number; }) {
   const player = useContext(PlayContext) as Player;
+  // console.log(player.melodyNotes)
 
   useEffect(() => {
     const melodyNotes = player.melodyNotes;
@@ -25,6 +26,7 @@ function NotesGrid({ musicalNotes, gridColumns }: { musicalNotes: string[]; grid
     const notesActivity = player.melodyNotes[culomnId];
     musicalNotes.forEach((noteName) => {
         const noteActive = notesActivity ? notesActivity.includes(noteName) : false;
+        // console.log(`${culomnId} ${noteName} ${noteActive}`)
         const note: Note = {name: noteName, active: noteActive};
         notes.push(note);
     })

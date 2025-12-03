@@ -4,7 +4,7 @@ import SavedMelodyButton from "./SavedMelodyButton";
 import { getMelodysNames } from "../../utils/fetchMelodys";
 
 export interface SavedMelodysProps{
-  setMelodyNotes: React.Dispatch<React.SetStateAction<string[][]>>
+  setMelodyNotes: React.Dispatch<React.SetStateAction<string[][] | undefined>>
   setCurrentInstrument: React.Dispatch<React.SetStateAction<string | undefined>>
 }
 

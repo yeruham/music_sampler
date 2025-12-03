@@ -1,12 +1,13 @@
 import type InstrumentsProps from "../../interfaces/InstrumentsProps";
 
-function InstrumentsInput({ instruments, setInstrument }: InstrumentsProps) {
+function InstrumentsInput({ instruments, currentInstrument, setInstrument }: InstrumentsProps) {
   const changeInstrument = (instrument: string) => {
     setInstrument(instrument);
   };
 
   return (
     <select
+      value={currentInstrument}
       className="select-instrument"
       onChange={(e) => changeInstrument(e.target.value)}
     >
