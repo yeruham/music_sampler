@@ -1,4 +1,4 @@
-import { createContext, useEffect, useRef, useState } from "react";
+import { createContext, useEffect, useRef, useState, useMemo } from "react";
 import * as Tone from "tone";
 import GridController from "./grid/GridController";
 import MelodyDashboard from "./play/MelodyDashboard";
@@ -15,17 +15,17 @@ export const PlayContext = createContext<Player | null>(null);
 function PlayController({ urls, instrument, melodyNotes }: { urls: { [key: string]: string }, instrument: string, melodyNotes?: string[][] }) {
   const volume = useRef(new Tone.Volume(-10).toDestination()).current;
   const players = useRef(new Tone.Players({urls, onerror: (err) => {console.error("Error loading buffer", err);}}).connect(volume));
-  const musicalNotes = Object.keys(urls);
+  const musicalNotes = useMemo(() => Object.keys(urls), [urls])
   const melodyNotesRef = useRef<string[][]>([]);
   const [currentPlayColumn, setCurrentPlayColumn] = useState(-1);
 
-
   const player: Player = {
-    players: players,
-    melodyNotes: melodyNotesRef.current,
-    currentPlayCulomn: currentPlayColumn,
-    instrument: instrument,
-  };
+      players: players,
+      melodyNotes: melodyNotes || melodyNotesRef.current,
+      currentPlayCulomn: currentPlayColumn,
+      instrument: instrument,
+    }
+
 
   useEffect(() => {
     players.current = new Tone.Players(urls).connect(volume);
@@ -34,13 +34,13 @@ function PlayController({ urls, instrument, melodyNotes }: { urls: { [key: strin
     })
   }, [urls]);
 
+
   // useEffect(() => {
   //   if (melodyNotes){
-  //     // for (let i = 0; i < melodyNotes.length; i++) {
-  //     //   melodyNotesRef.current[i].length = 0;
-  //     //   melodyNotesRef.current[i].push(...melodyNotes[i]);
-  //     // }
-  //     melodyNotesRef.current = [];
+  //     // melodyNotesRef.current.forEach((column) => {
+  //     //   column.length = 0;
+  //     // })
+  //     // melodyNotesRef.current = melodyNotes;
   //   }
   //   console.log(melodyNotesRef.current);
   // }, [melodyNotes])
