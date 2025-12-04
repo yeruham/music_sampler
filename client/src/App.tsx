@@ -34,17 +34,21 @@ function App() {
   }
 
   useEffect(() => {
-    loadInfo().then( () => {
-      if (instruments.current && instruments.current.length > 0){
-        const instrument = instruments.current[0];
-        const notesUrls = urlsByInstruments.current[instrument];
-        setNotesUrls(notesUrls);
-        setCurrentInstrument(instrument);
+    const interval = setInterval(() => {
+      console.log("try to load info from the server all 1 seconde");
+      loadInfo().then( () => {
+        if (instruments.current && instruments.current.length > 0){
+          clearInterval(interval);
+          const instrument = instruments.current[0];
+          const notesUrls = urlsByInstruments.current[instrument];
+          setNotesUrls(notesUrls);
+          setCurrentInstrument(instrument);
+        }
       }
-    }
-    ).catch( (err) => {
-      console.log("Error: cannot load info from the server " + err);
-    })
+      ).catch( (err) => {
+        console.log("Error: cannot load info from the server " + err);
+      })
+    }, 1000)
   }, [])
 
   useEffect(() => {
