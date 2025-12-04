@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import "./style/savedMelodys.css";
 import SavedMelodyButton from "./SavedMelodyButton";
 import { getMelodysNames } from "../../utils/fetchMelodys";
@@ -10,32 +10,30 @@ export interface SavedMelodysProps{
 
 const SavedMelodysMenu = ({ setMelodyNotes, setCurrentInstrument }: SavedMelodysProps) => {
   const [menuActive, setMenuActive] = useState(false);
-
-  const melodys = useRef<string[]>([]);
+  const [melodys, setMelodys] = useState<string[]>([]);
 
   useEffect(() => {
-    getMelodysNames()
-      .then((melodysNames) => {
-        if (melodysNames) {
-          melodys.current = melodysNames;
-        }
-      })
-      .catch();
-  }, []);
+    if (menuActive){
+      getMelodysNames()
+        .then((melodysNames) => {
+          if (melodysNames) {
+            setMelodys(melodysNames);
+          }
+        })
+        .catch();
+    }
+  }, [menuActive]);
+
+  const handleClick = () => {
+    setMenuActive(!menuActive);
+  }
 
   return (
     <div>
-      <button
-        className="saved-melodys"
-        onClick={() => {
-          setMenuActive(!menuActive);
-        }}
-      >
-        Saved Melodys
-      </button>
+      <button className="saved-melodys" onClick={handleClick}>Saved Melodys</button>
       {menuActive && (
         <div className="melodys-menu">
-          {melodys.current.map((melody) => {
+          {melodys.map((melody) => {
             return (
               <SavedMelodyButton
                 melodyName={melody}

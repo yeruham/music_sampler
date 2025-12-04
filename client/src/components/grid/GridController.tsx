@@ -30,7 +30,6 @@ function GridController({
       }
     }
   }, [musicalNotes, gridColumns]);
-  console.log(gridColumns);
 
   useEffect(() => {
     if (player.melodyNotes.length > 0){

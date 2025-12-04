@@ -8,6 +8,7 @@ export interface Player {
   melodyNotes: string[][];
   currentPlayCulomn: number;
   instrument: string;
+  isActivePlayer: React.RefObject<boolean>;
 }
 
 export const PlayContext = createContext<Player | null>(null);
@@ -18,12 +19,14 @@ function PlayController({ urls, instrument, defultMelodyNotes }: { urls: { [key:
   const musicalNotes = useMemo(() => Object.keys(urls), [urls])
   const melodyNotesRef = useRef<string[][]>([]);
   const [currentPlayColumn, setCurrentPlayColumn] = useState(-1);
+  const isActivePlayer = useRef<boolean>(false);
 
   const player: Player = {
       players: players,
       melodyNotes: defultMelodyNotes || melodyNotesRef.current,
       currentPlayCulomn: currentPlayColumn,
       instrument: instrument,
+      isActivePlayer: isActivePlayer,
     }
 
 
@@ -34,11 +37,20 @@ function PlayController({ urls, instrument, defultMelodyNotes }: { urls: { [key:
     })
   }, [urls]);
 
+  useEffect(() => {
+    isActivePlayer.current = false;
+    setCurrentPlayColumn(-1);
+  }, [defultMelodyNotes])
+
 
   return (
     <PlayContext.Provider value={player}>
       <GridController musicalNotes={musicalNotes}></GridController>
-      <MelodyDashboard setCurrentPlayColumn={setCurrentPlayColumn} volume={volume}></MelodyDashboard>
+      <MelodyDashboard 
+        isActivePlayer={isActivePlayer} 
+        setCurrentPlayColumn={setCurrentPlayColumn} 
+        volume={volume}>
+      </MelodyDashboard>
     </PlayContext.Provider>
   );
 }

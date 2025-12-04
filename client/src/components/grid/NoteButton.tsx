@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import "./style/NoteButton.css";
 import { PlayContext, type Player } from '../PlayController'
 import type Note from "../../interfaces/note";
@@ -11,11 +11,13 @@ function NoteButton({ name, active, columnId }: Note & { columnId: number }) {
 
   const handleClick = () => {
     const melodyNotes = player.melodyNotes
-    if (!isActive){
+    if (!isActive && !player.isActivePlayer.current){
       playNote(noteName);
-      melodyNotes[columnId].push(noteName);
     }
-    else{
+
+    if (!isActive){
+        melodyNotes[columnId].push(noteName);
+    }else{
       const indexOfNote = melodyNotes[columnId].indexOf(noteName);
       melodyNotes[columnId].splice(indexOfNote, 1);
     }
@@ -40,6 +42,10 @@ function NoteButton({ name, active, columnId }: Note & { columnId: number }) {
     }
     return className;
   }
+
+  useEffect(() => {
+    setIsActive(active);
+  },[player.melodyNotes])
 
   return (
     <button className={getClaasName()} onClick={handleClick}>

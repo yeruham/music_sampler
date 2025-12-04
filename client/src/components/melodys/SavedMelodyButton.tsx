@@ -12,6 +12,7 @@ const SavedMelodyButton = ({
   setCurrentInstrument,
   setMenuActive,
 }: SavedMelodysProps & SavedMelodyButtonProps) => {
+  
   const handleClick = async () => {
     const { melody, instrument } = await getMelody(melodyName);
     if (melody && instrument) {

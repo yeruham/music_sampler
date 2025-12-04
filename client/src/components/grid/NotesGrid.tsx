@@ -7,11 +7,9 @@ import type Note from "../../interfaces/note";
 function NotesGrid({ musicalNotes, gridColumns }: { musicalNotes: string[]; gridColumns: number; }) {
   const player = useContext(PlayContext) as Player;
 
-
   const getNotesList = (culomnId: number): Note[] => {
     const notes: Note[] = [];
     const notesActivity = player.melodyNotes[culomnId];
-    // console.log(notesActivity);
     musicalNotes.forEach((noteName) => {
         const noteActive = notesActivity ? notesActivity.includes(noteName) : false;
         const note: Note = {name: noteName, active: noteActive};
@@ -21,7 +19,6 @@ function NotesGrid({ musicalNotes, gridColumns }: { musicalNotes: string[]; grid
   }
 
   const notesColumns = useMemo(() => {
-    // console.log("memo")
     return (Array.from({ length: gridColumns }, (_, i) => {
     const notes = getNotesList(i);
     return (
@@ -34,7 +31,6 @@ function NotesGrid({ musicalNotes, gridColumns }: { musicalNotes: string[]; grid
   }));
   }, [musicalNotes, gridColumns, player.melodyNotes])
 
-  // console.log(player.melodyNotes);
   const gridTemplateRowsStyle = {
     gridTemplateRows: `repeat(${musicalNotes.length}, 50px)`,
   };
