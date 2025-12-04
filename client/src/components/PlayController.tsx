@@ -12,7 +12,7 @@ export interface Player {
 
 export const PlayContext = createContext<Player | null>(null);
 
-function PlayController({ urls, instrument, melodyNotes }: { urls: { [key: string]: string }, instrument: string, melodyNotes?: string[][] }) {
+function PlayController({ urls, instrument, defultMelodyNotes }: { urls: { [key: string]: string }, instrument: string, defultMelodyNotes?: string[][] }) {
   const volume = useRef(new Tone.Volume(-10).toDestination()).current;
   const players = useRef(new Tone.Players({urls, onerror: (err) => {console.error("Error loading buffer", err);}}).connect(volume));
   const musicalNotes = useMemo(() => Object.keys(urls), [urls])
@@ -21,7 +21,7 @@ function PlayController({ urls, instrument, melodyNotes }: { urls: { [key: strin
 
   const player: Player = {
       players: players,
-      melodyNotes: melodyNotes || melodyNotesRef.current,
+      melodyNotes: defultMelodyNotes || melodyNotesRef.current,
       currentPlayCulomn: currentPlayColumn,
       instrument: instrument,
     }
@@ -34,16 +34,6 @@ function PlayController({ urls, instrument, melodyNotes }: { urls: { [key: strin
     })
   }, [urls]);
 
-
-  // useEffect(() => {
-  //   if (melodyNotes){
-  //     // melodyNotesRef.current.forEach((column) => {
-  //     //   column.length = 0;
-  //     // })
-  //     // melodyNotesRef.current = melodyNotes;
-  //   }
-  //   console.log(melodyNotesRef.current);
-  // }, [melodyNotes])
 
   return (
     <PlayContext.Provider value={player}>

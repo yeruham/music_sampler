@@ -70,7 +70,7 @@ function App() {
           setMelodyNotes={setMelodyNotes}
         ></InstrumentsControl>
       </div>
-      <PlayController urls={notesUrls!} instrument={currentInstrument!} melodyNotes={melodyNotes}></PlayController>
+      <PlayController urls={notesUrls!} instrument={currentInstrument!} defultMelodyNotes={melodyNotes}></PlayController>
       </>}
     </>
   );

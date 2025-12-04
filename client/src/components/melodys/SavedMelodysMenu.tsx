@@ -4,8 +4,8 @@ import SavedMelodyButton from "./SavedMelodyButton";
 import { getMelodysNames } from "../../utils/fetchMelodys";
 
 export interface SavedMelodysProps{
-  setMelodyNotes: React.Dispatch<React.SetStateAction<string[][] | undefined>>
-  setCurrentInstrument: React.Dispatch<React.SetStateAction<string | undefined>>
+  setMelodyNotes: React.Dispatch<React.SetStateAction<string[][] | undefined>>;
+  setCurrentInstrument: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
 
 const SavedMelodysMenu = ({ setMelodyNotes, setCurrentInstrument }: SavedMelodysProps) => {
@@ -41,6 +41,7 @@ const SavedMelodysMenu = ({ setMelodyNotes, setCurrentInstrument }: SavedMelodys
                 melodyName={melody}
                 setMelodyNotes={setMelodyNotes}
                 setCurrentInstrument={setCurrentInstrument}
+                setMenuActive={setMenuActive}
                 key={melody}
               ></SavedMelodyButton>
             );
