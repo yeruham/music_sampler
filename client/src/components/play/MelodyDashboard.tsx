@@ -13,9 +13,9 @@ import * as Play from '../../utils/play'
 import SaveMelodtButton from "./SaveMelodyButton";
 
 
-function MelodyDashboard({ isActivePlayer, setCurrentPlayColumn, volume }: { isActivePlayer: React.RefObject<boolean>, setCurrentPlayColumn: React.Dispatch<React.SetStateAction<number>>, volume: Tone.Volume }) {
+function MelodyDashboard({ setCurrentPlayColumn, volume }: { setCurrentPlayColumn: React.Dispatch<React.SetStateAction<number>>, volume: Tone.Volume }) {
   const player = useContext(PlayContext) as Player;
-  // const isActivePlayer = useRef(false);
+  const isActivePlayer = player.isActivePlayer;
   const isPausedPlayer = useRef(false);
   const loopPlay = useRef(false);
   const currentPlayColumn = player.currentPlayCulomn;

@@ -47,7 +47,6 @@ function PlayController({ urls, instrument, defultMelodyNotes }: { urls: { [key:
     <PlayContext.Provider value={player}>
       <GridController musicalNotes={musicalNotes}></GridController>
       <MelodyDashboard 
-        isActivePlayer={isActivePlayer} 
         setCurrentPlayColumn={setCurrentPlayColumn} 
         volume={volume}>
       </MelodyDashboard>
