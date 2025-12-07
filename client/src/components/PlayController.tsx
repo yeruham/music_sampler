@@ -21,13 +21,13 @@ function PlayController({ urls, instrument, defultMelodyNotes }: { urls: { [key:
   const [currentPlayColumn, setCurrentPlayColumn] = useState(-1);
   const isActivePlayer = useRef<boolean>(false);
 
-  const player: Player = {
+  const player: Player = useMemo( () => ({
       players: players,
       melodyNotes: defultMelodyNotes || melodyNotesRef.current,
       currentPlayCulomn: currentPlayColumn,
       instrument: instrument,
       isActivePlayer: isActivePlayer,
-    }
+    }), [players, melodyNotesRef.current, defultMelodyNotes, currentPlayColumn, instrument, isActivePlayer])
 
 
   useEffect(() => {
@@ -35,7 +35,7 @@ function PlayController({ urls, instrument, defultMelodyNotes }: { urls: { [key:
     melodyNotesRef.current.forEach((columnNotes) => { 
       columnNotes.splice(0, columnNotes.length);
     })
-  }, [urls]);
+  }, [urls])
 
   useEffect(() => {
     isActivePlayer.current = false;

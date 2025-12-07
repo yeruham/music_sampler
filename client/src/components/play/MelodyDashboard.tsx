@@ -1,5 +1,5 @@
 import * as Tone from 'tone'
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useMemo, useRef } from "react";
 import './style/MelodyDashboard.css'
 import StartPlayButton from "./StartPlayButton";
 import LoopPlayButoon from "./LoopPlayButton";
@@ -27,14 +27,14 @@ function MelodyDashboard({ setCurrentPlayColumn, volume }: { setCurrentPlayColum
     Play.playGrid(playGridProps);
   }, [currentPlayColumn]);
 
-  const melodyControl: MelodyControl = {
+  const melodyControl: MelodyControl = useMemo( () => ({
     currentPlayColumn: currentPlayColumn,
     setCurrentPlayColumn: setCurrentPlayColumn,
     isActivePlayer: isActivePlayer,
     isPausedPlayer: isPausedPlayer,
     loopPlay: loopPlay,
     speed: speedPlayer,
-  };
+  }), [currentPlayColumn, setCurrentPlayColumn, isActivePlayer, isPausedPlayer, loopPlay, speedPlayer ])
 
   return (
     <div className="part melody-dashboard">
