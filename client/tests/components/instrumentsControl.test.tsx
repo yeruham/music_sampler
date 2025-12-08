@@ -24,8 +24,11 @@ describe('InstrumentsInput', () => {
     it(`should include three options with ${instruments}`, () => {
         render(<InstrumentsInput instruments={instruments} currentInstrument={currentInstrument} setInstrument={setInstrument} setMelodyNotes={setMelodyNotes}/>);
         const options = screen.getAllByRole("option");
-        // console.log(options)
-        console.log(options.map(o => o.textContent));
-        expect(options.length).toBe(instruments.length);
+        expect(options).toHaveLength(instruments.length);
+        instruments.forEach((instrument) => {
+            const instrumentOption = screen.getByRole("option", { name: instrument});
+            expect(instrumentOption).toBeInTheDocument();
+        })
     })
+
 })
