@@ -31,12 +31,11 @@ describe('SavedMelodysMenu',  () => {
         await user.click(button);
 
         const buttonsOfMenu = screen.getAllByRole("button");
-        melodyNames.forEach((melodyName) => {
-            const melodyButton = screen.getByRole("button", {name: melodyName});
+        for (const melodyName of melodyNames){
+            const melodyButton = await screen.findByRole("button", {name: melodyName});
             expect(melodyButton).toBeInTheDocument();
-        })
+        }
     })
-
 
     it('should close menu when user clicked of melody button', async () => {
         render(<SavedMelodysMenu {...savedMelodysProps}/>)
@@ -45,12 +44,11 @@ describe('SavedMelodysMenu',  () => {
         await user.click(button);
 
         const melodyName = melodyNames[0]  
-        const melodyButton = screen.getByRole("button", {name: melodyName});
+        const melodyButton = await screen.findByRole("button", {name: melodyName});
         await user.click(melodyButton);
 
         const allButtons = screen.getAllByRole("button");
         expect(allButtons).toHaveLength(1);
     })
 
-    
 })
