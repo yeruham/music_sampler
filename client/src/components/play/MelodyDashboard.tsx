@@ -19,7 +19,7 @@ function MelodyDashboard({ setCurrentPlayColumn, volume }: { setCurrentPlayColum
   const isPausedPlayer = useRef(false);
   const loopPlay = useRef(false);
   const currentPlayColumn = player.currentPlayCulomn;
-  const speedPlayer = useRef(5);
+  const speedPlayer = useRef(4);
 
 
   useEffect(() => {
