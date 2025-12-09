@@ -19,7 +19,13 @@ function VolumeControlInput({
 
   const [volume , setVolume] = useState(Number(currentVolume.volume.value.toFixed()));
   const changeVolume = (num: string) => {
-    currentVolume.volume.value = +num;
+    if (+num == min){
+      currentVolume.mute = true;
+    }
+    else{
+      currentVolume.mute = false;
+      currentVolume.volume.value = +num;
+    }
     setVolume(+num);
   };
 
