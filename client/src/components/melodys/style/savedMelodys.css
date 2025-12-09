@@ -10,6 +10,7 @@
   height: 50px;
   border-radius: 0px;
   text-align: center;
+  border-width: 0;
 }
 
 .melodys-menu {
@@ -22,6 +23,7 @@
 .melody-button, .melody-button:active {
   background-color: rgb(119, 165, 251);
   border-bottom: 1px solid black;
+  border-width: 0;
   border-top: 1px solid black;
   border-radius: 0px;
   color: black;
@@ -30,7 +32,7 @@
 }
 
 .melody-button:hover{
-  opacity: 1;
   background-color: rgb(40, 107, 251);
   color: white;
+  cursor: pointer;
 }

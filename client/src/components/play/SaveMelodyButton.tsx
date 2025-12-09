@@ -63,7 +63,7 @@ const SaveMelodtButton = () => {
         </>
       ) : (
         <button
-          className="save-melody-button"
+          className="save-melody"
           onClick={() => setIsActive(true)}
         >
           save

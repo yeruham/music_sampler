@@ -11,7 +11,7 @@ function StartPlayButton({ melodyControl}: { melodyControl: MelodyControl }) {
     }
   };
 
-  return <button onClick={handleClick}>play</button>;
+  return <button onClick={handleClick} className="play-button">play</button>;
 }
 
 export default StartPlayButton;

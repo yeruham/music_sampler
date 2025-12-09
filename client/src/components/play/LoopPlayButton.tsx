@@ -3,7 +3,7 @@ import type MelodyControl from "../../interfaces/MelodyControl";
 
 function LoopPlayButoon({ melodyControl }: { melodyControl: MelodyControl }) {
   const [loopActive, setLoopActive] = useState(false);
-  const className = loopActive ? "loop-play-active" : "loop-play";
+  const className = loopActive ? "loop-play loop-play-active" : "loop-play";
 
   const handleLoop = () => {
     if (!loopActive){

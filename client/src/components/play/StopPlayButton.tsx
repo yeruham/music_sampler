@@ -5,7 +5,7 @@ function StopPlayButton({ melodyControl }: { melodyControl: MelodyControl }) {
     melodyControl.isActivePlayer.current = false;
     melodyControl.setCurrentPlayColumn(-1);
   };
-  return <button onClick={startPlay}>stop</button>;
+  return <button onClick={startPlay} className="play-button">stop</button>;
 }
 
 export default StopPlayButton;

@@ -3,7 +3,7 @@
     justify-content: center;
 }
 
-button {
+.play-button, .loop-play, .loop-play-active {
     background-color: rgb(112, 157, 255);
     color: black;
     width: 100px;
@@ -13,14 +13,14 @@ button {
     margin-right: 10px;
 }
 
-button:hover {
+.play-button:hover, .loop-play:hover {
     cursor: pointer;
     background-color: rgb(48, 93, 189);
     border-width: 0;
     color: white;
 }
 
-button:active {
+.play-button:active {
     background-color: white;
     color:  rgb(112, 157, 255);
 }
@@ -39,7 +39,7 @@ input {
     flex-direction: column;
 }
 
-.loop-play-active, .loop-play:active, .loop-play-active:hover, .loop-play-active:active{
+.loop-play-active, .loop-play-active:hover, .loop-play-active:active{
     background-color: rgb(253, 199, 85);
     color: black;
 }
