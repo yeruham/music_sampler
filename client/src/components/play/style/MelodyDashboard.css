@@ -5,14 +5,14 @@
 
 button {
     /* background-color: rgb(165, 32, 32); */
-    border: 1px solid rgb(0, 0, 0, 0.2);
-    background-color: rgb(112, 157, 255, 0.5);
+    /* border: 1px solid rgb(0, 0, 0, 0.2); */
+    background-color: rgb(112, 157, 255);
     color: black;
     /* color: white; */
     width: 100px;
     height: 50px;
     border-radius: 20px;
-    /* border-width: 0; */
+    border-width: 0;
     margin-right: 10px;
 }
 
@@ -20,13 +20,15 @@ button {
 button:hover {
     /* opacity: 0.8; */
     cursor: pointer;
-    background-color: rgb(112, 157, 255);
+    background-color: rgb(48, 93, 189);
     border-width: 0;
+    /* box-shadow: 0 0 3px rgb(74, 144, 226); */
+    color: white;
 }
 
 button:active {
     background-color: white;
-    color:  rgb(165, 32, 32);
+    color:  rgb(112, 157, 255);
 }
 
 input {
@@ -43,7 +45,7 @@ input {
     flex-direction: column;
 }
 
-.loop-play-active, .loop-play:active, .loop-play-active:active{
+.loop-play-active, .loop-play:active, .loop-play-active:hover, .loop-play-active:active{
     background-color: rgb(253, 199, 85);
     color: black;
 }

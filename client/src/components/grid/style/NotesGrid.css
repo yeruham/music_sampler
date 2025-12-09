@@ -32,11 +32,11 @@
 }
 
 .notes-grid::-webkit-scrollbar-thumb {
-  background: rgb(165, 32, 32, 0.8);
+  background: rgb(253, 199, 85, 0.8);
   border-radius: 4px;
 }
 
 .notes-grid::-webkit-scrollbar-thumb:hover {
   cursor: pointer;
-  background: rgb(165, 32, 32); 
+  background: rgb(253, 199, 85); 
 }

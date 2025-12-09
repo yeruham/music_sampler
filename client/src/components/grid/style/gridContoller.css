@@ -1,4 +1,6 @@
 .grid-controller {
+    margin-top: 10px;
+    margin-bottom: 10px;
     display: flex;
     width: 100vw;
 }
@@ -30,6 +32,8 @@
 
 .change-num-columns-button:hover {
     background-color: rgb(255, 209, 111);
+    color: black;
+    box-shadow: 0 0 2px;
     border-width: 0;
     opacity: 0.8;
     cursor: pointer;

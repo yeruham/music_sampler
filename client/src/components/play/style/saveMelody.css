@@ -2,6 +2,10 @@
   background-color: rgb(48, 93, 189);
   height: 50px;
   border-radius: 10px;
+  border-radius: 5px;
+  margin: 0;
+  border: 1px solid white;
+  color: white;
 }
 
 .save-melody-conatiner {
@@ -40,15 +44,11 @@
 }
 
 .save-melody-button {
-  border-radius: 5px;
-  margin: 0;
-  background-color: rgb(48, 93, 189);
-  border: 1px solid white;
-  color: white;
+
 }
 
 .save-melody-button:hover {
-  opacity: 0.8;
+  /* opacity: 0.8; */
   cursor: pointer;
 }
 

@@ -17,7 +17,7 @@ body {
 .head {
   display: flex;
   justify-content: center;
-  /* background-color: rgb(251, 217, 143); */
+  background-color: rgb(251, 217, 143, 0.5);
   margin: 0;
   height: 15vh;
 }
@@ -26,6 +26,7 @@ h1 {
   width: 70%;
   font-size: 60px;
   margin: 0;
+  /* color: rgb(48, 93, 189); */
   /* color: rgb(165, 32, 32); */
   /* color: rgb(247, 186, 54); */
 }
@@ -48,14 +49,14 @@ h1 {
 } */
 
 .grid-controller{
-    height: 70vh;
+    height: 75vh;
 }
 
 .melody-dashboard {
   /* background-color: yellow; */
   padding-top: 10px;
     /* background-color: rgb(255, 236, 195); */
-  height: 10vh;
+  height: 15vh;
 }
 
 /* .instruments-control {

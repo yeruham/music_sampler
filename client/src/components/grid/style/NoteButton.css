@@ -12,9 +12,17 @@
   border-width: 0;
 }
 
-.active{
+.note-button:hover{
+  background-color: white;
+  color: black;
+  box-shadow: 0 0 2px;
+}
+
+.active, .active:hover{
   background-color: rgb(253, 199, 85);
 }
+
+
 
 .playing{
   opacity: 0.5;
