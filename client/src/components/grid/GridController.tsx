@@ -16,7 +16,7 @@ function GridController({
 }) {
   const player = useContext(PlayContext) as Player;
   const [gridColumns, setGridColumns] = useState(defultCulomns || 20);
-  const maxGridColumns = maxColumns || 25;
+  const maxGridColumns = maxColumns || 30;
   
 
   useEffect(() => {

@@ -3,10 +3,8 @@
   opacity: 0.8;
   padding: 10px;
   display: grid;
-  justify-content: center;
   grid-auto-columns: 50px; 
   grid-auto-flow: column;
-  gap: 1px;
   overflow: scroll;
   margin-left: 2%;
 }
