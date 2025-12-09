@@ -1,30 +1,40 @@
 .grid-controller {
-    /* background-color: rgb(219, 235, 254); */
-    /* padding-top: 5px; */
+    display: flex;
+    width: 100vw;
 }
 
 .controll-buttons {
+    width: 10%;
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    /* padding-left: 50px;
+    padding-right: 50px; */
+    /* margin-left: auto; */
 }
 
 .change-num-columns-button {
     margin-top: 5px;
-    background-color: rgb(165, 32, 32);
-    color: white;
-    width: 100px;
+    /* background-color: rgb(165, 32, 32); */
+    background-color: rgb(255, 236, 195);
+    border: 1px solid rgb(0, 0, 0, 0.2);
+    color: black;
+    width: 50px;
     height: 50px;
     border-radius: 5px;
-    border-width: 0;
+    /* border-width: 0; */
     margin-right: 10px;
+    font-size: 30px;
 }
 
 .change-num-columns-button:hover {
+    background-color: rgb(255, 209, 111);
+    border-width: 0;
     opacity: 0.8;
     cursor: pointer;
 }
 
 .change-num-columns-button:active {
-    background-color: white;
-    color:  rgb(165, 32, 32);
+    color: black;
 }

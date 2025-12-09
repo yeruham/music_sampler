@@ -41,6 +41,7 @@ function GridController({
 
   return (
     <div className="part grid-controller">
+      <NotesGrid musicalNotes={musicalNotes} gridColumns={gridColumns} />
       <div className="controll-buttons">
         {gridColumns < maxGridColumns && (
           <AddNotesColumnButton
@@ -55,7 +56,6 @@ function GridController({
           ></RempveNotesCulumnButton>
         )}
       </div>
-      <NotesGrid musicalNotes={musicalNotes} gridColumns={gridColumns} />
     </div>
   );
 }

@@ -1,4 +1,5 @@
 body {
+  background-color: rgb(255, 236, 195, 0.5);
   margin: 0;
   padding: 0;
   text-align: center;
@@ -16,7 +17,7 @@ body {
 .head {
   display: flex;
   justify-content: center;
-  background-color: rgb(251, 217, 143);
+  /* background-color: rgb(251, 217, 143); */
   margin: 0;
   height: 15vh;
 }
@@ -25,7 +26,8 @@ h1 {
   width: 70%;
   font-size: 60px;
   margin: 0;
-  color: rgb(165, 32, 32);
+  /* color: rgb(165, 32, 32); */
+  /* color: rgb(247, 186, 54); */
 }
 
 .saved-melodys{
@@ -36,20 +38,23 @@ h1 {
   margin: 0;
 }
 
-.controll-buttons {
+/* .controll-buttons {
   background-color: rgb(255, 236, 195);
   height: 10vh;
-}
+} */
 
-.notes-grid {
-  /* background-color: black; */
+/* .notes-grid {
   height: 60vh;
+} */
+
+.grid-controller{
+    height: 70vh;
 }
 
 .melody-dashboard {
   /* background-color: yellow; */
   padding-top: 10px;
-    background-color: rgb(255, 236, 195);
+    /* background-color: rgb(255, 236, 195); */
   height: 10vh;
 }
 

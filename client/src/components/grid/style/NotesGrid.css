@@ -1,5 +1,7 @@
 .notes-grid {
-  background-color:  rgb(255, 236, 195);
+  width: 88%;
+  /* background-color: rgb(255, 236, 195); */
+  /* border: 1px solid rgb(0, 0, 0, 0.2); */
   opacity: 0.8;
   padding: 10px;
   display: grid;
@@ -11,10 +13,30 @@
   /* row-gap: 0px; */
   gap: 1px;
   overflow: scroll;
+  margin-left: 2%;
 }
 
-.notes-grid::-webkit-scrollbar {
+/* .notes-grid::-webkit-scrollbar {
   width: 0;
   height: 0;
+} */
+
+.notes-grid::-webkit-scrollbar {
+  width: 8px; 
+  height: 8px;  
 }
 
+.notes-grid::-webkit-scrollbar-track {
+  background: rgb(0, 0, 0, 0.1); 
+  border-radius: 4px;
+}
+
+.notes-grid::-webkit-scrollbar-thumb {
+  background: rgb(165, 32, 32, 0.8);
+  border-radius: 4px;
+}
+
+.notes-grid::-webkit-scrollbar-thumb:hover {
+  cursor: pointer;
+  background: rgb(165, 32, 32); 
+}
