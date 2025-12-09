@@ -43,12 +43,8 @@
   width: 20%;
 }
 
-.save-melody-button {
-
-}
 
 .save-melody-button:hover {
-  /* opacity: 0.8; */
   cursor: pointer;
 }
 
