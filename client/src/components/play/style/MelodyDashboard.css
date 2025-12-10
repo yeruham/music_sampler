@@ -3,7 +3,7 @@
     justify-content: center;
 }
 
-.play-button, .loop-play, .loop-play-active {
+.play-button {
     background-color: rgb(112, 157, 255);
     color: black;
     width: 100px;
@@ -13,14 +13,13 @@
     margin-right: 10px;
 }
 
-.play-button:hover, .loop-play:hover {
+.play-button:hover{
     cursor: pointer;
-    background-color: rgb(48, 93, 189);
+    box-shadow: 0 0 5px;
     border-width: 0;
-    color: white;
 }
 
-.play-button:active {
+.stop:active {
     background-color: white;
     color:  rgb(112, 157, 255);
 }
@@ -39,7 +38,7 @@ input {
     flex-direction: column;
 }
 
-.loop-play-active, .loop-play-active:hover, .loop-play-active:active{
+.loop-play-active, .pause{
     background-color: rgb(253, 199, 85);
     color: black;
 }

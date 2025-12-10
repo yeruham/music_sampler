@@ -1,11 +1,11 @@
 import type MelodyControl from "../../interfaces/MelodyControl";
 
 function StopPlayButton({ melodyControl }: { melodyControl: MelodyControl }) {
-  const startPlay = () => {
+  const handleClick = () => {
     melodyControl.isActivePlayer.current = false;
     melodyControl.setCurrentPlayColumn(-1);
   };
-  return <button onClick={startPlay} className="play-button">stop</button>;
+  return <button onClick={handleClick} className="play-button stop">stop</button>;
 }
 
 export default StopPlayButton;

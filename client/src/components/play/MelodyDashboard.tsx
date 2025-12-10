@@ -5,7 +5,6 @@ import StartPlayButton from "./StartPlayButton";
 import LoopPlayButoon from "./LoopPlayButton";
 import StopPlayButton from "./StopPlayButton";
 import SpeedControlInput from "./SpeedControlInput";
-import PausePlayButton from "./PausePlayButton";
 import VolumeControlInput from "./VolumeControlInput";
 import { PlayContext, type Player } from "../PlayController";
 import type MelodyControl from "../../interfaces/MelodyControl";
@@ -42,7 +41,6 @@ function MelodyDashboard({ setCurrentPlayColumn, volume }: { setCurrentPlayColum
       <StartPlayButton melodyControl={melodyControl}></StartPlayButton>
       <StopPlayButton melodyControl={melodyControl}></StopPlayButton>
       <LoopPlayButoon melodyControl={melodyControl}></LoopPlayButoon>
-      <PausePlayButton melodyControl={melodyControl}></PausePlayButton>
       <SpeedControlInput currentSpeed={speedPlayer}></SpeedControlInput>
       <VolumeControlInput currentVolume={volume}></VolumeControlInput>
     </div>
